@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Star, Shield, Lightbulb, Handshake, Sprout, Users, Target, Eye } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTABanner from "@/components/CTABanner";
@@ -9,12 +10,12 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { title: "Excellence", description: "We strive for the highest standards in everything we do, from teaching to character development.", icon: "⭐" },
-  { title: "Integrity", description: "We uphold honesty, transparency, and ethical behavior in all our interactions.", icon: "🛡️" },
-  { title: "Innovation", description: "We embrace modern approaches, digital learning, and creative thinking in education.", icon: "💡" },
-  { title: "Respect", description: "We value diversity and treat every member of our community with dignity.", icon: "🤝" },
-  { title: "Responsibility", description: "We develop students who are accountable, caring, and socially conscious leaders.", icon: "🌱" },
-  { title: "Community", description: "We foster teamwork, environmental awareness, and active engagement with the wider community.", icon: "🤲" },
+  { Icon: Star, title: "Excellence", description: "We strive for the highest standards in everything we do, from teaching to character development." },
+  { Icon: Shield, title: "Integrity", description: "We uphold honesty, transparency, and ethical behavior in all our interactions." },
+  { Icon: Lightbulb, title: "Innovation", description: "We embrace modern approaches, digital learning, and creative thinking in education." },
+  { Icon: Handshake, title: "Respect", description: "We value diversity and treat every member of our community with dignity." },
+  { Icon: Sprout, title: "Responsibility", description: "We develop students who are accountable, caring, and socially conscious leaders." },
+  { Icon: Users, title: "Community", description: "We foster teamwork, environmental awareness, and active engagement with the wider community." },
 ];
 
 const leaders = [
@@ -78,8 +79,8 @@ export default function AboutPage() {
       <SectionWrapper bg="light">
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl">
-              🎯
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+              <Target className="h-7 w-7 text-primary" />
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Mission</h3>
             <p className="text-text-light leading-relaxed">
@@ -90,8 +91,8 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10 text-2xl">
-              🔭
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10">
+              <Eye className="h-7 w-7 text-secondary" />
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Vision</h3>
             <p className="text-text-light leading-relaxed">
@@ -113,8 +114,8 @@ export default function AboutPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((value) => (
             <div key={value.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-3xl transition-transform duration-300 group-hover:scale-110">
-                {value.icon}
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+                <value.Icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="mb-3 text-lg font-bold text-text">{value.title}</h3>
               <p className="text-sm leading-relaxed text-text-light">{value.description}</p>

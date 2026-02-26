@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Building2, Home, Phone, Mail, MapPin } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import FAQAccordion from "@/components/FAQAccordion";
@@ -10,38 +11,31 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { step: "01", title: "Inquiry", description: "Contact us via phone (0754 947 370 / 0755 394 008), email, or visit our campus at Best One Road, Salasala." },
-  { step: "02", title: "Application", description: "Complete the online application form or collect one from our office. Submit all required documents." },
-  { step: "03", title: "Assessment", description: "Students undergo an age-appropriate assessment to determine readiness and placement level." },
-  { step: "04", title: "Interview", description: "Parents and students meet with our admissions team for a brief interview and campus tour." },
-  { step: "05", title: "Admission Offer", description: "Successful applicants receive an admission letter with enrollment details and fee information." },
-  { step: "06", title: "Enrollment", description: "Complete registration, pay fees, choose day or boarding option, and prepare for an exciting learning journey!" },
+  { step: "01", title: "Collect Admission Form", description: "Obtain an admission form at the school campus in Salasala, Kinondoni, or request one through the Admission Office." },
+  { step: "02", title: "Submit Documents", description: "Complete and return the admission form together with required documents: a copy of the birth certificate, passport-size photos, and previous academic reports." },
+  { step: "03", title: "Pay Registration Fee", description: "Complete the registration process by paying the required registration fee at the school office." },
+  { step: "04", title: "Receive Confirmation", description: "Successful applicants will receive their admission confirmation letter with full enrollment details from our admissions team." },
 ];
 
 const requirements = [
-  "Completed application form",
-  "Birth certificate (original and photocopy)",
-  "Previous school reports / transcripts",
-  "Transfer certificate (if applicable)",
-  "4 recent passport photographs",
-  "Immunization records",
-  "Parent/Guardian identification",
-  "Assessment / entrance results",
+  "Completed admission form",
+  "Copy of birth certificate",
+  "Passport-size photographs",
+  "Previous academic reports / school reports",
 ];
 
 const fees = [
-  { program: "Nursery (Ages 3–5)", dayTuition: "Contact School", boardingTuition: "—", total: "Contact School" },
-  { program: "Primary (Std 1–7)", dayTuition: "Contact School", boardingTuition: "Contact School", total: "Contact School" },
-  { program: "Secondary (Form 1–6)", dayTuition: "Contact School", boardingTuition: "Contact School", total: "Contact School" },
+  { program: "Pre-Primary (Ages 3–5)", dayTuition: "Contact School", boardingTuition: "Contact School", total: "Contact School" },
+  { program: "Primary (Standard 1–7)", dayTuition: "Contact School", boardingTuition: "Contact School", total: "Contact School" },
+  { program: "Secondary (Form 1–4)", dayTuition: "Contact School", boardingTuition: "Contact School", total: "Contact School" },
 ];
 
 const faqs = [
-  { question: "What is the admission process timeline?", answer: "The entire admission process typically takes 1-2 weeks from application submission to enrollment confirmation. Admissions are currently open for Nursery, Primary, and Secondary students." },
-  { question: "Do you offer both day and boarding?", answer: "Yes! We offer flexible day and boarding options to accommodate different family needs. Boarding students stay in our well-supervised dormitories on campus." },
-  { question: "Is there an entrance exam?", answer: "Yes, all applicants undergo an age-appropriate assessment. For Nursery, this is an informal readiness evaluation. For Primary and Secondary, it includes tests in core subjects." },
-  { question: "Can my child join mid-term?", answer: "Mid-term admissions are considered on a case-by-case basis depending on available spaces. Please contact our admissions office at 0754 947 370 to discuss." },
-  { question: "What are the school hours?", answer: "School hours are Monday to Friday, 7:30 AM to 3:00 PM. After-school activities run until 4:30 PM. Boarding students have supervised evening study sessions." },
-  { question: "How can I visit the campus?", answer: "We welcome campus visits! You can visit us at Best One Road, Salasala, Kinondoni, Dar es Salaam. Call us at 0754 947 370 or 0755 394 008 to schedule a tour." },
+  { question: "Does the school offer both Day and Boarding?", answer: "Yes, Brain Yield Schools offers both Day and Boarding options at Pre-Primary, Primary, and Secondary levels. Boarding students reside in well-supervised, secure dormitories on campus." },
+  { question: "Are admissions open throughout the year?", answer: "Admissions are open depending on space availability. Early application is encouraged to secure a place for your child." },
+  { question: "Does the school provide transport?", answer: "Yes, school transport services are available for Day students in selected areas, offering safe and reliable routes." },
+  { question: "What curriculum does the school follow?", answer: "Brain Yield Schools follows the Tanzanian National Curriculum across all levels — Pre-Primary, Primary (Standard 1–7), and Secondary (Form 1–4, O-Level)." },
+  { question: "Are extracurricular activities offered?", answer: "Yes. Students actively participate in sports and athletics, debate and academic clubs, ICT and computer training sessions, and leadership and character-building seminars." },
 ];
 
 export default function AdmissionsPage() {
@@ -50,7 +44,7 @@ export default function AdmissionsPage() {
       {/* Replace bgImage with your own: "/images/admissions-hero.jpg" */}
       <HeroSection
         title="Admissions"
-        subtitle="Now Enrolling — Nursery, Primary & Secondary"
+        subtitle="Now Enrolling — Pre-Primary, Primary & Secondary"
         description="Begin your child's journey to excellence. Day and boarding options available. Our admissions process is simple, transparent, and welcoming."
         bgImage="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1400&h=600&fit=crop"
       />
@@ -61,7 +55,7 @@ export default function AdmissionsPage() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">How It Works</p>
           <h2 className="text-3xl font-bold text-text md:text-4xl">Admission Process</h2>
         </div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <div key={step.step} className="group relative rounded-2xl bg-bg p-8 transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
               <span className="mb-4 block text-5xl font-extrabold text-primary/10 group-hover:text-primary/20 transition-colors">
@@ -136,11 +130,108 @@ export default function AdmissionsPage() {
         </div>
         <div className="mt-6 text-center space-y-2">
           <p className="text-sm text-text-light">
-            For detailed fee information, contact us at <strong className="text-text">0754 947 370</strong> or <strong className="text-text">0755 394 008</strong>
+            For detailed fee information, contact us at <strong className="text-text">+255 754 947 370</strong>, <strong className="text-text">+255 755 394 008</strong>, or <strong className="text-text">+255 684 071 399</strong>
           </p>
           <p className="text-sm text-text-light">
             Email: <strong className="text-text">brainyieldschools@gmail.com</strong>
           </p>
+        </div>
+      </SectionWrapper>
+
+      {/* Day & Boarding */}
+      <SectionWrapper bg="light">
+        <div className="text-center mb-16">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Flexible Options</p>
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Day & Boarding School</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-text-light">
+            We offer both Day and Boarding options at Pre-Primary, Primary, and Secondary levels — designed to accommodate every family&apos;s needs.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2">
+          {/* Day School */}
+          <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+              <Building2 className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="mb-4 text-2xl font-bold text-text">Day School</h3>
+            <p className="mb-6 text-text-light leading-relaxed">Students attending as Day Scholars enjoy a structured and supportive academic experience each day.</p>
+            <ul className="space-y-3">
+              {[
+                "Structured daily academic schedule",
+                "Supervised study sessions",
+                "Participation in clubs and sports",
+                "School transport services available on selected routes",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-text-light">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Boarding School */}
+          <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10">
+              <Home className="h-7 w-7 text-secondary" />
+            </div>
+            <h3 className="mb-4 text-2xl font-bold text-text">Boarding School</h3>
+            <p className="mb-6 text-text-light leading-relaxed">Boarding students thrive in a secure, well-supervised environment that promotes discipline and independence.</p>
+            <ul className="space-y-3">
+              {[
+                "Secure and well-supervised dormitories",
+                "Balanced and nutritious meal programs",
+                "Evening prep and academic support sessions",
+                "24/7 pastoral care and supervision",
+                "Structured daily routine for discipline and independence",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-text-light">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Admission Office Contact */}
+      <SectionWrapper>
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Get In Touch</p>
+            <h2 className="text-3xl font-bold text-text md:text-4xl">Admission Office Contact</h2>
+            <p className="mt-4 text-text-light">Reach our dedicated Admissions team directly for enquiries, form requests, and any questions.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-3 text-center">
+            <div className="rounded-2xl bg-bg p-8">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <Phone className="h-6 w-6 text-primary" />
+              </div>
+              <h4 className="mb-3 font-bold text-text">Phone / WhatsApp</h4>
+              <p className="text-sm text-text-light">+255 754 947 370</p>
+              <p className="text-sm text-text-light">+255 755 394 008</p>
+              <p className="text-sm text-text-light">+255 684 071 399</p>
+            </div>
+            <div className="rounded-2xl bg-bg p-8">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <Mail className="h-6 w-6 text-primary" />
+              </div>
+              <h4 className="mb-3 font-bold text-text">Email</h4>
+              <p className="text-sm text-text-light break-all">brainyieldschools@gmail.com</p>
+            </div>
+            <div className="rounded-2xl bg-bg p-8">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <MapPin className="h-6 w-6 text-primary" />
+              </div>
+              <h4 className="mb-3 font-bold text-text">Location</h4>
+              <p className="text-sm text-text-light">Salasala, Kinondoni</p>
+              <p className="text-sm text-text-light">Dar es Salaam, Tanzania</p>
+            </div>
+          </div>
         </div>
       </SectionWrapper>
 

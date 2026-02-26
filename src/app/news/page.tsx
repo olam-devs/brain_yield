@@ -17,15 +17,15 @@ const featuredPost = {
 };
 
 const posts = [
-  { title: "School Garden Project Launches", excerpt: "Students are fostering environmental awareness and teamwork through our new School Garden Project, learning sustainability and agriculture firsthand.", date: "February 2026", category: "Community", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop" },
-  { title: "New Computer Lab Fully Equipped", excerpt: "Our state-of-the-art computer lab is now fully operational, bringing digital learning opportunities to every student from Nursery to Secondary.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
-  { title: "Admissions Now Open for 2026", excerpt: "Brain Yield Schools is now accepting applications for Nursery, Primary, and Secondary students. Both day and boarding options are available.", date: "January 2026", category: "Admissions", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" },
-  { title: "Parent-Teacher Conference Success", excerpt: "Our recent PTA meeting brought together parents and educators to discuss student progress, new initiatives, and plans for the academic year.", date: "December 2025", category: "Events", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" },
-  { title: "Sports Day & Cultural Celebration", excerpt: "Students celebrated diversity and sportsmanship through athletics, team sports, traditional dance, and cultural exhibitions at our annual event.", date: "November 2025", category: "Events", image: "https://images.unsplash.com/photo-1461896836934-bd45ba3b23e0?w=600&h=400&fit=crop" },
-  { title: "Boarding Facilities Upgraded", excerpt: "We have improved our boarding dormitories with better supervision, improved facilities, and enhanced comfort for all boarding students.", date: "October 2025", category: "News", image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=400&fit=crop" },
+  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is strongly encouraged to secure your child's place.", date: "February 2026", category: "Admissions", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" },
+  { title: "Ongoing Improvement of Learning Facilities", excerpt: "We continue to invest in our campus, upgrading classrooms, dormitories, and common areas to provide the best possible learning environment for every student at Brain Yield Schools.", date: "February 2026", category: "News", image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop" },
+  { title: "Expansion of ICT & Computer Lab Programs", excerpt: "Our ICT programs continue to grow with the expansion of computer lab facilities across all levels. Every student from Pre-Primary to Secondary now benefits from enhanced digital learning and computer training sessions.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
+  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding national examination results. Students continue to achieve excellent grades, reflecting the dedication of our teachers and the determination of our learners.", date: "March 2024", category: "Achievements", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
+  { title: "Parent-Teacher Conference Success", excerpt: "Our recent PTA meeting brought together parents and educators to discuss student progress, new initiatives, and plans for the academic year ahead.", date: "December 2025", category: "Events", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" },
+  { title: "Sports Day & Cultural Celebration", excerpt: "Students celebrated diversity and sportsmanship through athletics, team sports, traditional dance, and cultural exhibitions at our annual Sports Day event.", date: "November 2025", category: "Events", image: "https://images.unsplash.com/photo-1461896836934-bd45ba3b23e0?w=600&h=400&fit=crop" },
 ];
 
-const categories = ["All", "News", "Events", "Achievements", "Community", "Admissions"];
+const categories = ["All", "Admissions", "News", "Achievements", "Events"];
 
 export default function NewsPage() {
   return (
@@ -34,7 +34,7 @@ export default function NewsPage() {
       <HeroSection
         title="News & Events"
         subtitle="Stay Informed"
-        description="The latest happenings, achievements, and upcoming events at Brain Yield Schools, Salasala."
+        description="The latest happenings, achievements, and updates from Brain Yield Schools, Salasala, Kinondoni — Dar es Salaam."
         bgImage="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400&h=600&fit=crop"
       />
 

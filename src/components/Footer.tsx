@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MapPin, Phone, Mail, Globe, Clock, Facebook, Youtube, Instagram } from "lucide-react";
 
 const quickLinks = [
   { href: "/about", label: "About Us" },
@@ -43,17 +44,17 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               {[
-                { label: "Facebook", letter: "F" },
-                { label: "YouTube", letter: "Y" },
-                { label: "Instagram", letter: "I" },
+                { label: "Facebook", Icon: Facebook },
+                { label: "YouTube", Icon: Youtube },
+                { label: "Instagram", Icon: Instagram },
               ].map((social) => (
                 <a
                   key={social.label}
                   href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-medium transition-all duration-300 hover:bg-secondary hover:scale-110"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:bg-secondary hover:scale-110"
                   aria-label={social.label}
                 >
-                  {social.letter}
+                  <social.Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
@@ -99,23 +100,23 @@ export default function Footer() {
             <h3 className="mb-6 text-lg font-semibold">Contact Us</h3>
             <ul className="space-y-4 text-sm text-white/70">
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 text-secondary">&#9906;</span>
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
                 <span>Best One Road, Salasala, Kinondoni, Dar es Salaam, Tanzania</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-secondary">&#9742;</span>
+                <Phone className="h-4 w-4 shrink-0 text-secondary" />
                 <span>0754 947 370 / 0755 394 008</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-secondary">&#9993;</span>
+                <Mail className="h-4 w-4 shrink-0 text-secondary" />
                 <span>brainyieldschools@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-secondary">&#127760;</span>
+                <Globe className="h-4 w-4 shrink-0 text-secondary" />
                 <span>brainyieldschools.ac.tz</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 text-secondary">&#9200;</span>
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
                 <span>Mon - Fri: 7:30 AM - 4:00 PM</span>
               </li>
             </ul>

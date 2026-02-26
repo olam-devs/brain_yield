@@ -73,7 +73,7 @@ export default function HeroSlideshow() {
       <div className="relative z-20 flex h-full items-center justify-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-20">
           <p className="mb-4 inline-block rounded-full bg-secondary/30 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm border border-secondary/30">
-            Welcome to Brain Yield Schools — Salasala, Dar es Salaam
+            Welcome to Brain Yield Schools — Salasala, Kinondoni, Dar es Salaam
           </p>
           <h1
             key={current}

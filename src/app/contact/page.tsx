@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ContactForm from "@/components/ContactForm";
@@ -9,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 const contactInfo = [
-  { icon: "📍", title: "Visit Us", details: ["Best One Road, Salasala", "Kinondoni, Dar es Salaam", "Tanzania"] },
-  { icon: "📞", title: "Call Us", details: ["0754 947 370", "0755 394 008"] },
-  { icon: "📧", title: "Email Us", details: ["brainyieldschools@gmail.com"] },
-  { icon: "🕐", title: "Office Hours", details: ["Monday - Friday: 7:30 AM - 4:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"] },
+  { Icon: MapPin, title: "Visit Us", details: ["Best One Road, Salasala", "Kinondoni, Dar es Salaam", "Tanzania"] },
+  { Icon: Phone, title: "Call Us", details: ["0754 947 370", "0755 394 008"] },
+  { Icon: Mail, title: "Email Us", details: ["brainyieldschools@gmail.com"] },
+  { Icon: Clock, title: "Office Hours", details: ["Monday - Friday: 7:30 AM - 4:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"] },
 ];
 
 export default function ContactPage() {
@@ -31,8 +32,8 @@ export default function ContactPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {contactInfo.map((info) => (
             <div key={info.title} className="group rounded-2xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border/50">
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-3xl transition-transform duration-300 group-hover:scale-110">
-                {info.icon}
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+                <info.Icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="mb-3 text-lg font-bold text-text">{info.title}</h3>
               {info.details.map((detail) => (

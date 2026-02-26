@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  GraduationCap, BookOpen, Building2, Globe, Home as HomeIcon, Trophy,
+  ClipboardList, Dumbbell, Mic2, Monitor, Award,
+} from "lucide-react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import StatsCounter from "@/components/StatsCounter";
 import SectionWrapper from "@/components/SectionWrapper";
@@ -17,32 +21,32 @@ import CTABanner from "@/components/CTABanner";
 
 const programs = [
   {
-    title: "Nursery",
-    description: "Early childhood development for ages 3–5, focusing on play-based learning, foundational skills, and nurturing curiosity in a safe environment.",
+    title: "Pre-Primary",
+    description: "Early childhood education for ages 3–5, focusing on literacy, numeracy, communication skills, and social development in a safe and nurturing environment. Available as Day and Boarding.",
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop",
     href: "/academics#nursery",
   },
   {
     title: "Primary School",
-    description: "Standards 1–7, emphasizing core subjects, character development, and thorough preparation for secondary education with personalized learning.",
+    description: "Standards 1–7 following the Tanzanian National Curriculum. Strong foundation in English, Kiswahili, Mathematics, Science & Technology, Social Studies, and ICT — with preparation for the PSLE. Day and Boarding available.",
     image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&h=400&fit=crop",
     href: "/academics#primary",
   },
   {
     title: "Secondary School",
-    description: "Forms 1–6, preparing students for national examinations and higher education with modern facilities, dedicated teachers, and career guidance.",
+    description: "Forms 1–4 following the National O-Level Curriculum. Qualified and experienced teachers, Science and Arts subject combinations, and thorough preparation for the CSEE. Day and Boarding available.",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600&h=400&fit=crop",
     href: "/academics#secondary",
   },
 ];
 
 const features = [
-  { icon: "🎓", title: "Dedicated Teachers", description: "Highly qualified and passionate educators committed to every student's success." },
-  { icon: "📚", title: "Personalized Learning", description: "Tailored educational approaches that meet each child where they are and help them excel." },
-  { icon: "🏫", title: "Modern 4-Story Campus", description: "Spacious classrooms, equipped labs, and boarding dormitories in our state-of-the-art facility." },
-  { icon: "🌍", title: "Holistic Development", description: "Academics, extracurriculars, and community engagement for well-rounded growth." },
-  { icon: "🏠", title: "Day & Boarding Options", description: "Flexible day and boarding arrangements to accommodate every family's needs." },
-  { icon: "🏆", title: "Proven Academic Results", description: "Consistently outstanding performance in national examinations with top grades across subjects." },
+  { Icon: GraduationCap, title: "Dedicated Teachers", description: "Highly qualified and passionate educators committed to every student's success." },
+  { Icon: BookOpen, title: "Personalized Learning", description: "Tailored educational approaches that meet each child where they are and help them excel." },
+  { Icon: Building2, title: "Modern 4-Story Campus", description: "Spacious classrooms, equipped labs, and boarding dormitories in our state-of-the-art facility." },
+  { Icon: Globe, title: "Holistic Development", description: "Academics, extracurriculars, and community engagement for well-rounded growth." },
+  { Icon: HomeIcon, title: "Day & Boarding Options", description: "Flexible day and boarding arrangements to accommodate every family's needs." },
+  { Icon: Trophy, title: "Proven Academic Results", description: "Consistently outstanding performance in national examinations with top grades across subjects." },
 ];
 
 const testimonials = [
@@ -52,9 +56,17 @@ const testimonials = [
 ];
 
 const news = [
-  { title: "Outstanding PSLE Results 2024", excerpt: "All students passed across all subjects in the PESNO Grade Seven Mock Examination, with top grades in Kiswahili, Mathematics, Science, and English.", date: "March 2024", category: "Achievements", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
-  { title: "New Computer Lab Grand Opening", excerpt: "We are thrilled to unveil our fully equipped computer lab for digital learning, bringing modern technology to every student.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
-  { title: "School Garden Project Launch", excerpt: "Students are fostering environmental awareness and teamwork through our new School Garden Project, learning sustainability firsthand.", date: "February 2026", category: "Community", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop" },
+  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" },
+  { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
+  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding results in national examinations, with students achieving excellent grades across all subjects — a testament to our dedicated teachers and learners.", date: "March 2024", category: "Achievements", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
+];
+
+const activities = [
+  { Icon: ClipboardList, title: "Weekly Academic Assessments", description: "Regular assessments to monitor every student's progress and ensure they stay on track across all subjects." },
+  { Icon: Dumbbell, title: "Sports & Athletics", description: "Structured sports programs that build teamwork, fitness, discipline, and a healthy competitive spirit." },
+  { Icon: Mic2, title: "Debate & Academic Clubs", description: "Clubs that sharpen critical thinking, public speaking, and leadership skills through regular debates and competitions." },
+  { Icon: Monitor, title: "ICT & Computer Training", description: "Regular computer sessions equipping students with essential digital literacy and technology skills for the modern world." },
+  { Icon: Award, title: "Leadership & Character Seminars", description: "Dedicated programs that build integrity, responsibility, and leadership qualities in every learner." },
 ];
 
 export default function Home() {
@@ -66,11 +78,26 @@ export default function Home() {
       {/* Stats */}
       <StatsCounter />
 
-      {/* Featured Programs */}
+      {/* Welcome Introduction */}
       <SectionWrapper bg="light">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">About Us</p>
+          <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">Welcome to Brain Yield Schools</h2>
+          <p className="text-lg text-text-light leading-relaxed mb-4">
+            Brain Yield Schools is a leading private educational institution located in Salasala, Kinondoni – Dar es Salaam, Tanzania.
+            We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.
+          </p>
+          <p className="text-text-light leading-relaxed">
+            Our commitment is to nurture academic excellence, strong character, creativity, and leadership skills in every learner.
+          </p>
+        </div>
+      </SectionWrapper>
+
+      {/* Featured Programs */}
+      <SectionWrapper>
         <div className="text-center mb-16">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Our Programs</p>
-          <h2 className="text-3xl font-bold text-text md:text-4xl">Nursery to Secondary Education</h2>
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Pre-Primary to Secondary Education</h2>
           <p className="mx-auto mt-4 max-w-2xl text-text-light">
             Comprehensive programs with both day and boarding options, designed to nurture every stage of your child&apos;s development.
           </p>
@@ -109,8 +136,8 @@ export default function Home() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <div key={feature.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-3xl transition-all duration-300 group-hover:bg-secondary/15 group-hover:scale-110">
-                {feature.icon}
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-300 group-hover:bg-secondary/15 group-hover:scale-110">
+                <feature.Icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="mb-3 text-lg font-bold text-text">{feature.title}</h3>
               <p className="text-sm leading-relaxed text-text-light">{feature.description}</p>
@@ -119,8 +146,32 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
-      {/* Testimonials */}
+      {/* School Activities */}
       <SectionWrapper bg="light">
+        <div className="text-center mb-16">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">School Life</p>
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Regular School Activities</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-text-light">
+            A vibrant, structured school life that develops every student beyond the classroom.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {activities.map((activity) => (
+            <div key={activity.title} className="flex gap-5 rounded-2xl bg-white p-6 shadow-sm border border-border/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                <activity.Icon className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="mb-1 font-bold text-text">{activity.title}</h3>
+                <p className="text-sm leading-relaxed text-text-light">{activity.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Testimonials */}
+      <SectionWrapper>
         <div className="text-center mb-16">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Testimonials</p>
           <h2 className="text-3xl font-bold text-text md:text-4xl">What Parents & Students Say</h2>
@@ -141,7 +192,7 @@ export default function Home() {
       <SectionWrapper>
         <div className="text-center mb-16">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Stay Updated</p>
-          <h2 className="text-3xl font-bold text-text md:text-4xl">Latest News & Events</h2>
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Latest News & Updates</h2>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {news.map((item) => (
