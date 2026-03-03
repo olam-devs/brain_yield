@@ -26,7 +26,7 @@ const programs = [
       "Environmental and nature awareness",
     ],
     option: "Day & Boarding options available",
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=700&h=500&fit=crop",
+    image: "/school%20pics/IMG_6191.jpg",
   },
   {
     id: "primary",
@@ -44,7 +44,7 @@ const programs = [
       "Creative and Cultural Arts",
     ],
     option: "Day & Boarding options available",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=700&h=500&fit=crop",
+    image: "/school%20pics/school%20view%207.jpg",
   },
   {
     id: "secondary",
@@ -62,19 +62,18 @@ const programs = [
       "Career Guidance and Counseling",
     ],
     option: "Day & Boarding options available",
-    image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=700&h=500&fit=crop",
+    image: "/school%20pics/school%20view%208.jpg",
   },
 ];
 
 export default function AcademicsPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/academics-hero.jpg" */}
       <HeroSection
         title="Academic Programs"
         subtitle="Nursery to Secondary — Day & Boarding"
         description="Comprehensive, personalized programs designed to nurture intellectual curiosity, build character, and prepare students for national examinations and beyond."
-        bgImage="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/school%20view%201.jpg"
       />
 
       {/* Academic Performance Highlight */}

@@ -9,23 +9,22 @@ export const metadata: Metadata = {
 };
 
 const facilities = [
-  { title: "4-Story Campus Building", description: "Our impressive 4-story building houses spacious, well-ventilated classrooms equipped with modern teaching aids and comfortable furniture designed for optimal learning.", image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop" },
-  { title: "Computer Laboratory", description: "Fully equipped computer lab for digital learning, providing students with hands-on experience in ICT, programming, and research from an early age.", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
-  { title: "Boarding Dormitories", description: "Well-supervised boarding dormitories with proper facilities and care, providing a safe and comfortable home-away-from-home for boarding students.", image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=400&fit=crop" },
-  { title: "Science Laboratory", description: "Equipped science lab for hands-on experimental learning in physics, chemistry, and biology, bringing scientific concepts to life.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
-  { title: "Library & Resource Center", description: "A growing library with textbooks, reference materials, and reading resources to support academic research and cultivate a love for reading.", image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&h=400&fit=crop" },
-  { title: "School Garden", description: "Our School Garden Project fosters environmental awareness and teamwork, giving students hands-on experience in sustainability and agriculture.", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop" },
+  { title: "4-Story Campus Building", description: "Our impressive 4-story building houses spacious, well-ventilated classrooms equipped with modern teaching aids and comfortable furniture designed for optimal learning.", image: "/school%20pics/IMG_6061.jpg" },
+  { title: "Computer Laboratory", description: "Fully equipped computer lab for digital learning, providing students with hands-on experience in ICT, programming, and research from an early age.", image: "/school%20pics/IMG_6381.jpg" },
+  { title: "Boarding Dormitories", description: "Well-supervised boarding dormitories with proper facilities and care, providing a safe and comfortable home-away-from-home for boarding students.", image: "/school%20pics/IMG_6354.jpg" },
+  { title: "Science Laboratory", description: "Equipped science lab for hands-on experimental learning in physics, chemistry, and biology, bringing scientific concepts to life.", image: "/school%20pics/IMG_6300.jpg" },
+  { title: "Library & Resource Center", description: "A growing library with textbooks, reference materials, and reading resources to support academic research and cultivate a love for reading.", image: "/school%20pics/IMG_6262.jpg" },
+  { title: "School Garden", description: "Our School Garden Project fosters environmental awareness and teamwork, giving students hands-on experience in sustainability and agriculture.", image: "/school%20pics/IMG_6092.jpg" },
 ];
 
 export default function FacilitiesPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/facilities-hero.jpg" */}
       <HeroSection
         title="Our Facilities"
         subtitle="Modern Campus — Salasala, Dar es Salaam"
         description="A 4-story campus with modern classrooms, computer labs, boarding dormitories, and more — designed for the best learning experience."
-        bgImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/school%20view%204.jpg"
       />
 
       <SectionWrapper>

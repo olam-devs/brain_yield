@@ -23,19 +23,19 @@ const programs = [
   {
     title: "Pre-Primary",
     description: "Early childhood education for ages 3–5, focusing on literacy, numeracy, communication skills, and social development in a safe and nurturing environment. Available as Day and Boarding.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop",
+    image: "/school%20pics/pre%20primary%20in%20assembly.PNG",
     href: "/academics#nursery",
   },
   {
     title: "Primary School",
     description: "Standards 1–7 following the Tanzanian National Curriculum. Strong foundation in English, Kiswahili, Mathematics, Science & Technology, Social Studies, and ICT — with preparation for the PSLE. Day and Boarding available.",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&h=400&fit=crop",
+    image: "/school%20pics/school%20view%205.jpg",
     href: "/academics#primary",
   },
   {
     title: "Secondary School",
     description: "Forms 1–4 following the National O-Level Curriculum. Qualified and experienced teachers, Science and Arts subject combinations, and thorough preparation for the CSEE. Day and Boarding available.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600&h=400&fit=crop",
+    image: "/school%20pics/school%20view%206.jpg",
     href: "/academics#secondary",
   },
 ];
@@ -56,9 +56,9 @@ const testimonials = [
 ];
 
 const news = [
-  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" },
-  { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
-  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding results in national examinations, with students achieving excellent grades across all subjects — a testament to our dedicated teachers and learners.", date: "March 2024", category: "Achievements", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
+  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "/school%20pics/Main%20gate.PNG" },
+  { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "/school%20pics/IMG_6410.jpg" },
+  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding results in national examinations, with students achieving excellent grades across all subjects — a testament to our dedicated teachers and learners.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg" },
 ];
 
 const activities = [

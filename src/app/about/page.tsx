@@ -28,12 +28,11 @@ const leaders = [
 export default function AboutPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/about-hero.jpg" */}
       <HeroSection
         title="About Brain Yield Schools"
         subtitle="Our Story — Salasala, Dar es Salaam"
         description="Building a legacy of educational excellence in Tanzania, shaping young minds and transforming futures through personalized learning."
-        bgImage="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/front%20view.PNG"
       />
 
       {/* History */}
@@ -63,7 +62,7 @@ export default function AboutPage() {
           </div>
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=500&fit=crop"
+              src="/school%20pics/school%20buildings.PNG"
               alt="Brain Yield Schools campus"
               className="rounded-2xl shadow-2xl"
             />

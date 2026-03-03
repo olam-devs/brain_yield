@@ -13,16 +13,16 @@ const featuredPost = {
   excerpt: "We are proud to announce that all Brain Yield Schools students passed across all subjects in the PESNO Grade Seven Mock Examination March 2024. Subjects include Kiswahili, Mathematics, Social Studies, English, Science, and Civic & Moral Education, with a school average of 39.097 marks. High percentages of students achieved top grades (A and B), reflecting our commitment to academic excellence and personalized learning.",
   date: "March 2024",
   category: "Achievements",
-  image: "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1200&h=600&fit=crop",
+  image: "/school%20pics/IMG_5977.jpg",
 };
 
 const posts = [
-  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is strongly encouraged to secure your child's place.", date: "February 2026", category: "Admissions", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" },
-  { title: "Ongoing Improvement of Learning Facilities", excerpt: "We continue to invest in our campus, upgrading classrooms, dormitories, and common areas to provide the best possible learning environment for every student at Brain Yield Schools.", date: "February 2026", category: "News", image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop" },
-  { title: "Expansion of ICT & Computer Lab Programs", excerpt: "Our ICT programs continue to grow with the expansion of computer lab facilities across all levels. Every student from Pre-Primary to Secondary now benefits from enhanced digital learning and computer training sessions.", date: "January 2026", category: "News", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop" },
-  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding national examination results. Students continue to achieve excellent grades, reflecting the dedication of our teachers and the determination of our learners.", date: "March 2024", category: "Achievements", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" },
-  { title: "Parent-Teacher Conference Success", excerpt: "Our recent PTA meeting brought together parents and educators to discuss student progress, new initiatives, and plans for the academic year ahead.", date: "December 2025", category: "Events", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" },
-  { title: "Sports Day & Cultural Celebration", excerpt: "Students celebrated diversity and sportsmanship through athletics, team sports, traditional dance, and cultural exhibitions at our annual Sports Day event.", date: "November 2025", category: "Events", image: "https://images.unsplash.com/photo-1461896836934-bd45ba3b23e0?w=600&h=400&fit=crop" },
+  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is strongly encouraged to secure your child's place.", date: "February 2026", category: "Admissions", image: "/school%20pics/Main%20gate.PNG" },
+  { title: "Ongoing Improvement of Learning Facilities", excerpt: "We continue to invest in our campus, upgrading classrooms, dormitories, and common areas to provide the best possible learning environment for every student at Brain Yield Schools.", date: "February 2026", category: "News", image: "/school%20pics/school%20buildings.PNG" },
+  { title: "Expansion of ICT & Computer Lab Programs", excerpt: "Our ICT programs continue to grow with the expansion of computer lab facilities across all levels. Every student from Pre-Primary to Secondary now benefits from enhanced digital learning and computer training sessions.", date: "January 2026", category: "News", image: "/school%20pics/IMG_6417.jpg" },
+  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding national examination results. Students continue to achieve excellent grades, reflecting the dedication of our teachers and the determination of our learners.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg" },
+  { title: "Parent-Teacher Conference Success", excerpt: "Our recent PTA meeting brought together parents and educators to discuss student progress, new initiatives, and plans for the academic year ahead.", date: "December 2025", category: "Events", image: "/school%20pics/front%20view.PNG" },
+  { title: "Sports Day & Cultural Celebration", excerpt: "Students celebrated diversity and sportsmanship through athletics, team sports, traditional dance, and cultural exhibitions at our annual Sports Day event.", date: "November 2025", category: "Events", image: "/school%20pics/sports%20-%20football.PNG" },
 ];
 
 const categories = ["All", "Admissions", "News", "Achievements", "Events"];
@@ -30,12 +30,11 @@ const categories = ["All", "Admissions", "News", "Achievements", "Events"];
 export default function NewsPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/news-hero.jpg" */}
       <HeroSection
         title="News & Events"
         subtitle="Stay Informed"
         description="The latest happenings, achievements, and updates from Brain Yield Schools, Salasala, Kinondoni — Dar es Salaam."
-        bgImage="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/school%20view%202.jpg"
       />
 
       {/* Featured Post */}

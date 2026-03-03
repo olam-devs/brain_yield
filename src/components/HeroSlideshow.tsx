@@ -14,26 +14,26 @@ import Link from "next/link";
  */
 const slides = [
   {
-    src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1400&h=700&fit=crop",
+    src: "/school%20pics/school%20view%201.jpg",
     alt: "Brain Yield Schools campus building",
     heading: "Together We Make The Difference With Excellence",
     subheading: "Quality education from Nursery to Secondary in Salasala, Dar es Salaam",
   },
   {
-    src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&h=700&fit=crop",
-    alt: "Students learning in classroom",
+    src: "/school%20pics/pre%20primary%20in%20assembly.PNG",
+    alt: "Pre-primary students in assembly",
     heading: "Nurturing Confident, Responsible Leaders",
     subheading: "Personalized learning with both day and boarding options for every family",
   },
   {
-    src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1400&h=700&fit=crop",
-    alt: "Students reading and studying",
+    src: "/school%20pics/school%20view%202.jpg",
+    alt: "Brain Yield Schools campus",
     heading: "100% Pass Rate — PSLE 2024",
     subheading: "Proven academic excellence with top grades across all subjects",
   },
   {
-    src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&h=700&fit=crop",
-    alt: "Students in extracurricular activities",
+    src: "/school%20pics/school%20view%203.jpg",
+    alt: "Modern campus facilities",
     heading: "Modern Facilities, Holistic Development",
     subheading: "4-story campus with computer labs, boarding dormitories, and a school garden",
   },

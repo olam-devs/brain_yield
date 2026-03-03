@@ -4,7 +4,8 @@
       "Bash(tail:*)",
       "Bash(cd:*)",
       "Bash(head:*)",
-      "Bash(cd /d/Batman/Batman/brain_yield && npx tsc --noEmit 2>&1)"
+      "Bash(cd /d/Batman/Batman/brain_yield && npx tsc --noEmit 2>&1)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

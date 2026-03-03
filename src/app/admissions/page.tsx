@@ -41,12 +41,11 @@ const faqs = [
 export default function AdmissionsPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/admissions-hero.jpg" */}
       <HeroSection
         title="Admissions"
         subtitle="Now Enrolling — Pre-Primary, Primary & Secondary"
         description="Begin your child's journey to excellence. Day and boarding options available. Our admissions process is simple, transparent, and welcoming."
-        bgImage="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/Main%20gate.PNG"
       />
 
       {/* Admission Process */}
@@ -89,8 +88,8 @@ export default function AdmissionsPage() {
           </div>
           <div className="rounded-2xl overflow-hidden shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600&h=500&fit=crop"
-              alt="Students at Brain Yield Schools"
+              src="/school%20pics/school%20view%209.jpg"
+              alt="Brain Yield Schools campus"
               className="w-full h-full object-cover"
             />
           </div>

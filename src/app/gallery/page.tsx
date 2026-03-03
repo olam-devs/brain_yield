@@ -9,29 +9,92 @@ export const metadata: Metadata = {
 };
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop", alt: "Students in classroom", category: "Campus" },
-  { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=500&fit=crop", alt: "Graduation ceremony", category: "Events" },
-  { src: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=350&fit=crop", alt: "Science laboratory", category: "Academics" },
-  { src: "https://images.unsplash.com/photo-1461896836934-bd45ba3b23e0?w=600&h=450&fit=crop", alt: "Sports day", category: "Sports" },
-  { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop", alt: "Debate competition", category: "Events" },
-  { src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&h=500&fit=crop", alt: "Library reading", category: "Academics" },
-  { src: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=350&fit=crop", alt: "ICT lab session", category: "Academics" },
-  { src: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=600&h=450&fit=crop", alt: "Pre-school activities", category: "Campus" },
-  { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=400&fit=crop", alt: "Art class", category: "Academics" },
-  { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=500&fit=crop", alt: "Campus grounds", category: "Campus" },
-  { src: "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600&h=350&fit=crop", alt: "Cultural day celebration", category: "Events" },
-  { src: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&h=450&fit=crop", alt: "School library", category: "Campus" },
+  // Campus — labelled photos
+  { src: "/school%20pics/Main%20gate.PNG", alt: "Brain Yield Schools main entrance gate", category: "Campus" },
+  { src: "/school%20pics/school%20view%207.jpg", alt: "School campus view", category: "Campus" },
+  { src: "/school%20pics/school%20view%208.jpg", alt: "School campus exterior", category: "Campus" },
+  { src: "/school%20pics/school%20view%209.jpg", alt: "Campus grounds", category: "Campus" },
+  { src: "/school%20pics/school%20bus.jpg", alt: "Brain Yield Schools bus", category: "Campus" },
+  { src: "/school%20pics/swings%20for%20kids.PNG", alt: "Playground swings for young learners", category: "Campus" },
+  // Sports — labelled photos
+  { src: "/school%20pics/sports%20-%20football.PNG", alt: "Students playing football", category: "Sports" },
+  { src: "/school%20pics/rope%20pulling%20playground.PNG", alt: "Rope pulling activity on the playground", category: "Sports" },
+  // Events — assemblies, ceremonies, performances
+  { src: "/school%20pics/IMG_5966.jpg", alt: "Full school assembly", category: "Events" },
+  { src: "/school%20pics/IMG_5973.jpg", alt: "Students marching band performance", category: "Events" },
+  { src: "/school%20pics/IMG_5977.jpg", alt: "School assembly with all students", category: "Events" },
+  { src: "/school%20pics/IMG_5980.jpg", alt: "Students in outdoor assembly", category: "Events" },
+  { src: "/school%20pics/IMG_6007.jpg", alt: "Primary students group photo", category: "Events" },
+  { src: "/school%20pics/IMG_6045.jpg", alt: "Kindergarten graduation ceremony", category: "Events" },
+  // Campus — buildings & grounds
+  { src: "/school%20pics/IMG_5988.jpg", alt: "Campus corridor and playground", category: "Campus" },
+  { src: "/school%20pics/IMG_6061.jpg", alt: "4-story school building with students on balconies", category: "Campus" },
+  { src: "/school%20pics/IMG_6092.jpg", alt: "Students working in the school garden", category: "Campus" },
+  { src: "/school%20pics/IMG_6096.jpg", alt: "Students harvesting in school garden", category: "Campus" },
+  { src: "/school%20pics/IMG_6350.jpg", alt: "Kindergarten nap room", category: "Campus" },
+  { src: "/school%20pics/IMG_6685.jpg", alt: "Children on playground equipment", category: "Campus" },
+  // Academics — classrooms, labs, library
+  { src: "/school%20pics/IMG_6126.jpg", alt: "Students in home economics — baking class", category: "Academics" },
+  { src: "/school%20pics/IMG_6134.jpg", alt: "Students learning baking skills", category: "Academics" },
+  { src: "/school%20pics/IMG_6179.jpg", alt: "Nursery classroom activity", category: "Academics" },
+  { src: "/school%20pics/IMG_6188.jpg", alt: "Pre-primary students playing", category: "Academics" },
+  { src: "/school%20pics/IMG_6190.jpg", alt: "Pre-primary student at play", category: "Academics" },
+  { src: "/school%20pics/IMG_6191.jpg", alt: "Teacher at blackboard with nursery class", category: "Academics" },
+  { src: "/school%20pics/IMG_6215.jpg", alt: "Students in cooking class", category: "Academics" },
+  { src: "/school%20pics/IMG_6262.jpg", alt: "Students reading in the school library", category: "Academics" },
+  { src: "/school%20pics/IMG_6264.jpg", alt: "Library reading session with teacher", category: "Academics" },
+  { src: "/school%20pics/IMG_6279.jpg", alt: "Students using voltmeter in science lab", category: "Academics" },
+  { src: "/school%20pics/IMG_6300.jpg", alt: "Students studying anatomy model in science lab", category: "Academics" },
+  { src: "/school%20pics/IMG_6303.jpg", alt: "Science lab — human body model", category: "Academics" },
+  { src: "/school%20pics/IMG_6354.jpg", alt: "Kindergarten nap time", category: "Academics" },
+  { src: "/school%20pics/IMG_6381.jpg", alt: "Teacher and students in computer lab", category: "Academics" },
+  { src: "/school%20pics/IMG_6410.jpg", alt: "Students using computers in ICT lab", category: "Academics" },
+  { src: "/school%20pics/IMG_6417.jpg", alt: "ICT teacher supervising students", category: "Academics" },
+  { src: "/school%20pics/IMG_6422.jpg", alt: "Students working on computers with teacher", category: "Academics" },
+  // Sports — sports day and athletics
+  { src: "/school%20pics/IMG_6576.jpg", alt: "Students in sports bibs on the field", category: "Sports" },
+  { src: "/school%20pics/IMG_6626.jpg", alt: "Female sports team", category: "Sports" },
+  { src: "/school%20pics/IMG_6631.jpg", alt: "Students exercising on sports field", category: "Sports" },
+  { src: "/school%20pics/IMG_6640.jpg", alt: "Young students in sports kit", category: "Sports" },
+  { src: "/school%20pics/IMG_6643.jpg", alt: "Students cheering at sports day", category: "Sports" },
+  { src: "/school%20pics/IMG_6647.jpg", alt: "Students jumping during athletics", category: "Sports" },
+  { src: "/school%20pics/IMG_6720.jpg", alt: "Football match action", category: "Sports" },
+  // School Life — remaining photos
+  { src: "/school%20pics/IMG_6656.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6658.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6663.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6667.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6688.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6695.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6703.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6708.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6713.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6717.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6721.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6722.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6724.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6735.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6736.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6760.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6779.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6801.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6805.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6817.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6830.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6839.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6843.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6845.jpg", alt: "School life at Brain Yield", category: "School Life" },
+  { src: "/school%20pics/IMG_6853.jpg", alt: "School life at Brain Yield", category: "School Life" },
 ];
 
 export default function GalleryPage() {
   return (
     <>
-      {/* Replace bgImage with your own: "/images/gallery-hero.jpg" */}
       <HeroSection
         title="Photo Gallery"
         subtitle="Life at Brain Yield"
         description="A glimpse into the vibrant life, events, and activities at Brain Yield Schools."
-        bgImage="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&h=600&fit=crop"
+        bgImage="/school%20pics/school%20view%208.jpg"
       />
 
       <SectionWrapper>
