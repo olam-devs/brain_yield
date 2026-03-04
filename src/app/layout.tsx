@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Brain Yield Schools",
   },
   description:
-    "Brain Yield Schools in Salasala, Dar es Salaam offers quality education from Nursery to Secondary level with day and boarding options. Nurturing confident, responsible leaders.",
+    "Brain Yield Schools at Salasala, Dar es Salaam offers quality education from Nursery to Secondary level with day and boarding options. Nurturing confident, responsible leaders.",
   keywords: [
     "Brain Yield Schools",
     "Salasala",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Brain Yield Schools — Together We Make The Difference With Excellence",
     description:
-      "Quality education from Nursery to Secondary in Salasala, Dar es Salaam. Day and boarding options available.",
+      "Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
     type: "website",
   },
 };

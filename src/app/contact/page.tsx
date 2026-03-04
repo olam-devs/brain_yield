@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const contactInfo = [
   { Icon: MapPin, title: "Visit Us", details: ["Best One Road, Salasala", "Kinondoni, Dar es Salaam", "Tanzania"] },
-  { Icon: Phone, title: "Call Us", details: ["0754 947 370", "0755 394 008"] },
+  { Icon: Phone, title: "Call Us", details: ["Director: +255 754 947 370", "Manager: +255 755 394 008", "Head Pre & Primary:\n+255 657 337 849", "Head Secondary:\n+255 620 839 096"] },
   { Icon: Mail, title: "Email Us", details: ["brainyieldschools@gmail.com"] },
   { Icon: Clock, title: "Office Hours", details: ["Monday - Friday: 7:30 AM - 4:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"] },
 ];
@@ -37,7 +37,7 @@ export default function ContactPage() {
               </div>
               <h3 className="mb-3 text-lg font-bold text-text">{info.title}</h3>
               {info.details.map((detail) => (
-                <p key={detail} className="text-sm text-text-light">{detail}</p>
+                <p key={detail} className="text-sm text-text-light whitespace-pre-line">{detail}</p>
               ))}
             </div>
           ))}
@@ -61,26 +61,17 @@ export default function ContactPage() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Find Us</p>
             <h2 className="text-3xl font-bold text-text md:text-4xl mb-8">Our Location</h2>
             <div className="overflow-hidden rounded-2xl shadow-lg border border-border/50">
-              <div className="relative h-[400px] lg:h-full min-h-[400px] bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-                    <svg className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-text mb-2">Brain Yield Schools</h3>
-                  <p className="text-sm text-text-light mb-1">Best One Road, Salasala</p>
-                  <p className="text-sm text-text-light mb-1">Kinondoni, Dar es Salaam</p>
-                  <p className="text-sm text-text-light mb-4">Tanzania</p>
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium text-primary">0754 947 370</p>
-                    <p className="text-sm font-medium text-primary">0755 394 008</p>
-                  </div>
-                  <p className="mt-4 text-sm text-text-light">brainyieldschools@gmail.com</p>
-                  <p className="mt-1 text-sm text-secondary font-medium">brainyieldschools.ac.tz</p>
-                </div>
-              </div>
+              <iframe
+                src="https://maps.google.com/maps?q=75WH%2BR5+Dar+es+Salaam&output=embed"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Brain Yield Schools Location"
+                className="w-full min-h-[450px]"
+              />
             </div>
           </div>
         </div>

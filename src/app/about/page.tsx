@@ -6,7 +6,7 @@ import CTABanner from "@/components/CTABanner";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Brain Yield Schools in Salasala, Dar es Salaam — our history, mission, vision, core values, and leadership team.",
+  description: "Learn about Brain Yield Schools at Salasala, Dar es Salaam — our history, mission, vision, core values, and leadership team.",
 };
 
 const values = [
@@ -19,7 +19,7 @@ const values = [
 ];
 
 const leaders = [
-  { name: "School Director", position: "Founder / Director", bio: "Our founder established Brain Yield Schools with a vision to create a quality learning institution in Salasala that nurtures every child's potential and builds confident, responsible leaders.", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" },
+  { name: "School Director", position: "Founder / Director", bio: "Our founder established Brain Yield Schools with a vision to create a quality learning institution at Salasala that nurtures every child's potential and builds confident, responsible leaders.", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Academics", position: "Academic Director", bio: "Overseeing curriculum development and ensuring academic excellence across Nursery, Primary, and Secondary programs with personalized learning approaches.", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Administration", position: "Administrative Director", bio: "Ensuring smooth operations, safe boarding facilities, and a conducive learning environment across our 4-story campus.", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Student Affairs", position: "Student Welfare Director", bio: "Coordinating extracurricular activities, boarding supervision, the School Garden Project, and holistic student development programs.", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face" },

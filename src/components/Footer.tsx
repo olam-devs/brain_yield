@@ -103,9 +103,14 @@ export default function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
                 <span>Best One Road, Salasala, Kinondoni, Dar es Salaam, Tanzania</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 shrink-0 text-secondary" />
-                <span>0754 947 370 / 0755 394 008</span>
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
+                <span>
+                  Director: +255 754 947 370<br />
+                  Manager: +255 755 394 008<br />
+                  Head Pre &amp; Primary: +255 657 337 849<br />
+                  Head Secondary: +255 620 839 096
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-secondary" />
