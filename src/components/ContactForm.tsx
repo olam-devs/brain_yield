@@ -12,11 +12,24 @@ export default function ContactForm() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", program: "", boardingOption: "", subject: "", message: "" });
+    setStatus("sending");
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", program: "", boardingOption: "", subject: "", message: "" });
+    } else {
+      setStatus("error");
+    }
   };
 
   return (
@@ -134,11 +147,24 @@ export default function ContactForm() {
           placeholder="How can we help you?"
         />
       </div>
+
+      {status === "success" && (
+        <div className="rounded-xl bg-green-50 border border-green-200 px-5 py-4 text-sm text-green-700 font-medium">
+          Thank you! Your message has been sent. We will get back to you soon.
+        </div>
+      )}
+      {status === "error" && (
+        <div className="rounded-xl bg-red-50 border border-red-200 px-5 py-4 text-sm text-red-700 font-medium">
+          Something went wrong. Please try again or call us directly.
+        </div>
+      )}
+
       <button
         type="submit"
-        className="inline-flex items-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-light hover:shadow-xl hover:-translate-y-0.5"
+        disabled={status === "sending"}
+        className="inline-flex items-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-light hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Send Message
+        {status === "sending" ? "Sending..." : "Send Message"}
         <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
         </svg>
