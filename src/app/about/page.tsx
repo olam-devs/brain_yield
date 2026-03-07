@@ -83,10 +83,10 @@ export default function AboutPage() {
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Mission</h3>
             <p className="text-text-light leading-relaxed">
-              To provide quality, personalized education that develops the intellectual, moral, and
-              social capacities of every student through modern facilities, dedicated teaching, and
-              holistic development — empowering them to become confident, responsible leaders and
-              positive contributors to Tanzania and the world.
+              Every child to develop a curiosity of learning, discover their interests and grow 
+              in love of learning.
+              We also desire to have strong families through parent support / fellowship 
+              and skills training.
             </p>
           </div>
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
@@ -95,10 +95,8 @@ export default function AboutPage() {
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Vision</h3>
             <p className="text-text-light leading-relaxed">
-              To be a leading educational institution in Dar es Salaam and Tanzania, recognized for
-              nurturing excellence, fostering innovation, and building futures — producing graduates
-              who are academically excellent, morally upright, and committed to making a difference
-              in their communities.
+              Exellent care to children while fostering each child's 
+              intellectual, social, physical and moral development in an academic-rich environment. 
             </p>
           </div>
         </div>
