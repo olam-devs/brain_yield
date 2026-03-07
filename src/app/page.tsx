@@ -62,7 +62,7 @@ const news = [
 ];
 
 const activities = [
-  { Icon: ClipboardList, title: "Weekly Academic Assessments", description: "Regular assessments to monitor every student's progress and ensure they stay on track across all subjects." },
+  { Icon: ClipboardList, title: "Monthly Academic Assessments", description: "Regular assessments to monitor every student's progress and ensure they stay on track across all subjects." },
   { Icon: Dumbbell, title: "Sports & Athletics", description: "Structured sports programs that build teamwork, fitness, discipline, and a healthy competitive spirit." },
   { Icon: Mic2, title: "Debate & Academic Clubs", description: "Clubs that sharpen critical thinking, public speaking, and leadership skills through regular debates and competitions." },
   { Icon: Monitor, title: "ICT & Computer Training", description: "Regular computer sessions equipping students with essential digital literacy and technology skills for the modern world." },
@@ -84,7 +84,7 @@ export default function Home() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">About Us</p>
           <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">Welcome to Brain Yield Schools</h2>
           <p className="text-lg text-text-light leading-relaxed mb-4">
-            Brain Yield Schools is a leading private educational institution located in Salasala, Kinondoni – Dar es Salaam, Tanzania.
+            Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania.
             We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.
           </p>
           <p className="text-text-light leading-relaxed">

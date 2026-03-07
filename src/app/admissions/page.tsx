@@ -7,11 +7,11 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Admissions",
-  description: "Apply to Brain Yield Schools in Salasala, Dar es Salaam — Nursery, Primary, and Secondary admission with day and boarding options.",
+  description: "Apply to Brain Yield Schools at Salasala, Dar es Salaam — Nursery, Primary, and Secondary admission with day and boarding options.",
 };
 
 const steps = [
-  { step: "01", title: "Collect Admission Form", description: "Obtain an admission form at the school campus in Salasala, Kinondoni, or request one through the Admission Office." },
+  { step: "01", title: "Collect Admission Form", description: "Obtain an admission form at the school campus at Salasala, Kinondoni, or request one through the Admission Office." },
   { step: "02", title: "Submit Documents", description: "Complete and return the admission form together with required documents: a copy of the birth certificate, passport-size photos, and previous academic reports." },
   { step: "03", title: "Pay Registration Fee", description: "Complete the registration process by paying the required registration fee at the school office." },
   { step: "04", title: "Receive Confirmation", description: "Successful applicants will receive their admission confirmation letter with full enrollment details from our admissions team." },
