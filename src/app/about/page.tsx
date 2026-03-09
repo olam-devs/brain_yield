@@ -95,7 +95,7 @@ export default function AboutPage() {
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Vision</h3>
             <p className="text-text-light leading-relaxed">
-              Exellent care to children while fostering each child's 
+              Excellent care to children while fostering each child's
               intellectual, social, physical and moral development in an academic-rich environment. 
             </p>
           </div>
