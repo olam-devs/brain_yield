@@ -62,7 +62,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-text md:text-4xl mb-8">Our Location</h2>
             <div className="overflow-hidden rounded-2xl shadow-lg border border-border/50">
               <iframe
-                src="https://maps.google.com/maps?q=6699%2BV83+Dar+es+Salaam&output=embed"
+                src="https://maps.google.com/maps?q=75WH%2BR5+Dar+es+Salaam&output=embed"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
