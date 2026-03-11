@@ -1,22 +1,20 @@
-// Sanity CMS Client Configuration
-// Replace these with your actual Sanity project credentials
+import { createClient } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
 
-export const sanityConfig = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "your-project-id",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2024-01-01",
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+export const apiVersion = "2024-01-01";
+
+export const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
   useCdn: true,
-};
+});
 
-// To use Sanity CMS:
-// 1. Create a Sanity project at https://www.sanity.io
-// 2. Install: npm install @sanity/client @sanity/image-url next-sanity
-// 3. Add your project ID and dataset to .env.local:
-//    NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
-//    NEXT_PUBLIC_SANITY_DATASET=production
-// 4. Import and use the client in your pages/components
+const builder = imageUrlBuilder(client);
 
-// Example usage:
-// import { createClient } from '@sanity/client';
-// const client = createClient(sanityConfig);
-// const data = await client.fetch('*[_type == "post"]');
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function urlFor(source: any) {
+  return builder.image(source);
+}

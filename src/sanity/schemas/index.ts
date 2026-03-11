@@ -1,136 +1,79 @@
-// Sanity CMS Schema Definitions for Brain Yield Schools
-// These schemas define the content structure for the Sanity Studio
+import { defineField, defineType } from "sanity";
 
-export const heroSchema = {
-  name: "hero",
-  title: "Hero Section",
-  type: "document",
-  fields: [
-    { name: "title", title: "Title", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "subtitle", title: "Subtitle", type: "string" },
-    { name: "description", title: "Description", type: "text" },
-    { name: "backgroundImage", title: "Background Image", type: "image", options: { hotspot: true } },
-    { name: "ctaText", title: "CTA Button Text", type: "string" },
-    { name: "ctaLink", title: "CTA Button Link", type: "string" },
-  ],
-};
-
-export const leadershipSchema = {
-  name: "leadership",
-  title: "Leadership Team",
-  type: "document",
-  fields: [
-    { name: "name", title: "Full Name", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "position", title: "Position", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "bio", title: "Biography", type: "text" },
-    { name: "image", title: "Photo", type: "image", options: { hotspot: true } },
-    { name: "order", title: "Display Order", type: "number" },
-  ],
-};
-
-export const programSchema = {
-  name: "program",
-  title: "Academic Programs",
-  type: "document",
-  fields: [
-    { name: "title", title: "Program Title", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "subtitle", title: "Subtitle (e.g., Ages 2-5)", type: "string" },
-    { name: "description", title: "Description", type: "text" },
-    { name: "curriculum", title: "Curriculum Items", type: "array", of: [{ type: "string" }] },
-    { name: "image", title: "Program Image", type: "image", options: { hotspot: true } },
-    { name: "order", title: "Display Order", type: "number" },
-  ],
-};
-
-export const testimonialSchema = {
-  name: "testimonial",
-  title: "Testimonials",
-  type: "document",
-  fields: [
-    { name: "name", title: "Name", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "role", title: "Role (e.g., Parent, Alumni)", type: "string" },
-    { name: "quote", title: "Testimonial Quote", type: "text", validation: (Rule: any) => Rule.required() },
-    { name: "rating", title: "Rating (1-5)", type: "number", validation: (Rule: any) => Rule.min(1).max(5) },
-    { name: "image", title: "Photo", type: "image", options: { hotspot: true } },
-  ],
-};
-
-export const newsSchema = {
-  name: "news",
-  title: "News & Events",
-  type: "document",
-  fields: [
-    { name: "title", title: "Title", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "slug", title: "Slug", type: "slug", options: { source: "title", maxLength: 96 } },
-    { name: "excerpt", title: "Excerpt", type: "text", validation: (Rule: any) => Rule.max(200) },
-    { name: "body", title: "Body", type: "array", of: [{ type: "block" }, { type: "image" }] },
-    { name: "category", title: "Category", type: "string", options: { list: ["News", "Events", "Achievements", "Sports", "Milestone"] } },
-    { name: "image", title: "Featured Image", type: "image", options: { hotspot: true } },
-    { name: "publishedAt", title: "Published Date", type: "datetime" },
-    { name: "featured", title: "Featured Post", type: "boolean" },
-  ],
-};
-
-export const gallerySchema = {
+const gallerySchema = defineType({
   name: "galleryImage",
   title: "Gallery",
   type: "document",
   fields: [
-    { name: "title", title: "Image Title", type: "string" },
-    { name: "image", title: "Image", type: "image", options: { hotspot: true }, validation: (Rule: any) => Rule.required() },
-    { name: "category", title: "Category", type: "string", options: { list: ["Campus", "Events", "Academics", "Sports"] } },
-    { name: "order", title: "Display Order", type: "number" },
+    defineField({ name: "title", title: "Image Title / Caption", type: "string" }),
+    defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true }, validation: (Rule) => Rule.required() }),
+    defineField({
+      name: "category", title: "Category", type: "string",
+      options: { list: ["Campus", "Events", "Academics", "Sports", "School Life"] },
+    }),
+    defineField({ name: "order", title: "Display Order (lower = first)", type: "number" }),
   ],
-};
+  preview: {
+    select: { title: "title", media: "image" },
+  },
+});
 
-export const statsSchema = {
-  name: "stats",
-  title: "Quick Stats",
+const testimonialSchema = defineType({
+  name: "testimonial",
+  title: "Testimonials",
   type: "document",
   fields: [
-    { name: "label", title: "Label", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "value", title: "Value", type: "number", validation: (Rule: any) => Rule.required() },
-    { name: "suffix", title: "Suffix (e.g., +, %)", type: "string" },
-    { name: "order", title: "Display Order", type: "number" },
+    defineField({ name: "name", title: "Full Name", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "role", title: "Role (e.g. Parent — Primary School)", type: "string" }),
+    defineField({ name: "quote", title: "Testimonial Quote", type: "text", validation: (Rule) => Rule.required() }),
+    defineField({ name: "rating", title: "Rating (1–5)", type: "number", validation: (Rule) => Rule.min(1).max(5) }),
   ],
-};
+  preview: {
+    select: { title: "name", subtitle: "role" },
+  },
+});
 
-export const facilitySchema = {
-  name: "facility",
-  title: "Facilities",
+const newsSchema = defineType({
+  name: "news",
+  title: "News & Events",
   type: "document",
   fields: [
-    { name: "title", title: "Facility Name", type: "string", validation: (Rule: any) => Rule.required() },
-    { name: "description", title: "Description", type: "text" },
-    { name: "image", title: "Image", type: "image", options: { hotspot: true } },
-    { name: "order", title: "Display Order", type: "number" },
+    defineField({ name: "title", title: "Title", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title", maxLength: 96 } }),
+    defineField({ name: "excerpt", title: "Short Excerpt (max 200 chars)", type: "text", validation: (Rule) => Rule.max(200) }),
+    defineField({
+      name: "category", title: "Category", type: "string",
+      options: { list: ["Admissions", "News", "Achievements", "Events", "Sports", "Milestone"] },
+    }),
+    defineField({ name: "image", title: "Featured Image", type: "image", options: { hotspot: true } }),
+    defineField({ name: "publishedAt", title: "Published Date", type: "datetime" }),
+    defineField({ name: "featured", title: "Mark as Featured Post", type: "boolean" }),
   ],
-};
+  preview: {
+    select: { title: "title", subtitle: "category", media: "image" },
+  },
+  orderings: [{ title: "Published Date, New", name: "publishedAtDesc", by: [{ field: "publishedAt", direction: "desc" }] }],
+});
 
-export const contactInfoSchema = {
-  name: "contactInfo",
-  title: "Contact Information",
+const applicationFormSchema = defineType({
+  name: "applicationForm",
+  title: "Application Forms",
   type: "document",
   fields: [
-    { name: "address", title: "Address", type: "text" },
-    { name: "phone", title: "Phone Numbers", type: "array", of: [{ type: "string" }] },
-    { name: "email", title: "Email Addresses", type: "array", of: [{ type: "string" }] },
-    { name: "officeHours", title: "Office Hours", type: "text" },
-    { name: "mapEmbedUrl", title: "Google Maps Embed URL", type: "url" },
+    defineField({ name: "title", title: "Form Title (e.g. Primary School Application Form 2026)", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "description", title: "Description", type: "text" }),
+    defineField({
+      name: "program", title: "Program", type: "string",
+      options: { list: ["Pre-Primary", "Primary", "Secondary", "General / All Programs"] },
+    }),
+    defineField({ name: "file", title: "Form File (PDF)", type: "file", options: { accept: ".pdf,.doc,.docx" } }),
+    defineField({ name: "order", title: "Display Order (lower = first)", type: "number" }),
+    defineField({ name: "active", title: "Active (visible on website)", type: "boolean", initialValue: true }),
   ],
-};
+  preview: {
+    select: { title: "title", subtitle: "program" },
+  },
+});
 
-// Export all schemas
-const schemas = [
-  heroSchema,
-  leadershipSchema,
-  programSchema,
-  testimonialSchema,
-  newsSchema,
-  gallerySchema,
-  statsSchema,
-  facilitySchema,
-  contactInfoSchema,
-];
-
+const schemas = [gallerySchema, testimonialSchema, newsSchema, applicationFormSchema];
 export default schemas;

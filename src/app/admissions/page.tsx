@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Building2, Home, Phone, Mail, MapPin } from "lucide-react";
+import { Building2, Home, Phone, Mail, MapPin, FileDown } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import FAQAccordion from "@/components/FAQAccordion";
 import ContactForm from "@/components/ContactForm";
+import { client } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Admissions",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { step: "01", title: "Collect Admission Form", description: "Obtain an admission form at the school campus at Salasala, Kinondoni, or request one through the Admission Office." },
+  { step: "01", title: "Download & Print Form", description: "Download the application form below, or collect one at the school campus at Salasala, Kinondoni." },
   { step: "02", title: "Submit Documents", description: "Complete and return the admission form together with required documents: a copy of the birth certificate, passport-size photos, and previous academic reports." },
   { step: "03", title: "Pay Registration Fee", description: "Complete the registration process by paying the required registration fee at the school office." },
   { step: "04", title: "Receive Confirmation", description: "Successful applicants will receive their admission confirmation letter with full enrollment details from our admissions team." },
@@ -38,7 +39,28 @@ const faqs = [
   { question: "Are extracurricular activities offered?", answer: "Yes. Students actively participate in sports and athletics, debate and academic clubs, ICT and computer training sessions, and leadership and character-building seminars." },
 ];
 
-export default function AdmissionsPage() {
+interface ApplicationForm {
+  _id: string;
+  title: string;
+  description?: string;
+  program?: string;
+  file?: { asset?: { url?: string } };
+}
+
+async function getApplicationForms(): Promise<ApplicationForm[]> {
+  try {
+    const results = await client.fetch(
+      `*[_type == "applicationForm" && active != false] | order(order asc) { _id, title, description, program, file { asset->{ url } } }`
+    );
+    return results || [];
+  } catch {
+    return [];
+  }
+}
+
+export default async function AdmissionsPage() {
+  const applicationForms = await getApplicationForms();
+
   return (
     <>
       <HeroSection
@@ -57,9 +79,7 @@ export default function AdmissionsPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <div key={step.step} className="group relative rounded-2xl bg-bg p-8 transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
-              <span className="mb-4 block text-5xl font-extrabold text-primary/10 group-hover:text-primary/20 transition-colors">
-                {step.step}
-              </span>
+              <span className="mb-4 block text-5xl font-extrabold text-primary/10 group-hover:text-primary/20 transition-colors">{step.step}</span>
               <h3 className="mb-3 text-xl font-bold text-text">{step.title}</h3>
               <p className="text-sm leading-relaxed text-text-light">{step.description}</p>
             </div>
@@ -87,17 +107,65 @@ export default function AdmissionsPage() {
             </ul>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-2xl">
-            <img
-              src="/school%20pics/school%20view%209.jpg"
-              alt="Brain Yield Schools campus"
-              className="w-full h-full object-cover"
-            />
+            <img src="/school%20pics/school%20view%209.jpg" alt="Brain Yield Schools campus" className="w-full h-full object-cover" />
           </div>
         </div>
       </SectionWrapper>
 
-      {/* Fee Structure */}
+      {/* Application Forms Download */}
       <SectionWrapper>
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Download & Apply</p>
+            <h2 className="text-3xl font-bold text-text md:text-4xl">Application Forms</h2>
+            <p className="mt-4 text-text-light">
+              Download the application form for your child&apos;s program, fill it out, and bring it to our admissions office at Salasala.
+            </p>
+          </div>
+          {applicationForms.length > 0 ? (
+            <div className="space-y-4">
+              {applicationForms.map((form) => (
+                <div key={form._id} className="flex items-center justify-between gap-4 rounded-2xl bg-bg p-6 border border-border/50 hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <FileDown className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-text">{form.title}</h4>
+                      {form.program && <p className="text-sm font-medium text-secondary mt-0.5">{form.program}</p>}
+                      {form.description && <p className="mt-1 text-sm text-text-light">{form.description}</p>}
+                    </div>
+                  </div>
+                  {form.file?.asset?.url ? (
+                    <a
+                      href={form.file.asset.url}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
+                    >
+                      <FileDown className="h-4 w-4" />
+                      Download
+                    </a>
+                  ) : (
+                    <span className="shrink-0 rounded-full bg-gray-100 px-6 py-3 text-sm text-gray-400">Unavailable</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border-2 border-dashed border-border bg-bg p-12 text-center">
+              <FileDown className="mx-auto mb-4 h-12 w-12 text-text-light/40" />
+              <h4 className="mb-2 text-lg font-semibold text-text">Forms Coming Soon</h4>
+              <p className="text-text-light">Application forms will be available for download shortly. In the meantime, visit our office or contact us directly.</p>
+              <p className="mt-4 font-semibold text-primary">+255 754 947 370 · +255 755 394 008</p>
+            </div>
+          )}
+        </div>
+      </SectionWrapper>
+
+      {/* Fee Structure */}
+      <SectionWrapper bg="light">
         <div className="text-center mb-16">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Investment in Education</p>
           <h2 className="text-3xl font-bold text-text md:text-4xl">Fee Structure</h2>
@@ -129,16 +197,16 @@ export default function AdmissionsPage() {
         </div>
         <div className="mt-6 text-center space-y-2">
           <p className="text-sm text-text-light">
-            For detailed fee information, contact us at <strong className="text-text">+255 754 947 370</strong>, <strong className="text-text">+255 755 394 008</strong>, or <strong className="text-text">+255 684 071 399</strong>
+            For detailed fee information, contact us at <strong className="text-text">+255 754 947 370</strong> or <strong className="text-text">+255 755 394 008</strong>
           </p>
           <p className="text-sm text-text-light">
-            Email: <strong className="text-text">brainyieldschools@gmail.com</strong>
+            Email: <strong className="text-text">brainyield.schools2020@gmail.com</strong>
           </p>
         </div>
       </SectionWrapper>
 
       {/* Day & Boarding */}
-      <SectionWrapper bg="light">
+      <SectionWrapper>
         <div className="text-center mb-16">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Flexible Options</p>
           <h2 className="text-3xl font-bold text-text md:text-4xl">Day & Boarding School</h2>
@@ -147,7 +215,6 @@ export default function AdmissionsPage() {
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
-          {/* Day School */}
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
               <Building2 className="h-7 w-7 text-primary" />
@@ -155,12 +222,7 @@ export default function AdmissionsPage() {
             <h3 className="mb-4 text-2xl font-bold text-text">Day School</h3>
             <p className="mb-6 text-text-light leading-relaxed">Students attending as Day Scholars enjoy a structured and supportive academic experience each day.</p>
             <ul className="space-y-3">
-              {[
-                "Structured daily academic schedule",
-                "Supervised study sessions",
-                "Participation in clubs and sports",
-                "School transport services available on selected routes",
-              ].map((item) => (
+              {["Structured daily academic schedule", "Supervised study sessions", "Participation in clubs and sports", "School transport services available on selected routes"].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <svg className="mt-0.5 h-5 w-5 shrink-0 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -170,7 +232,6 @@ export default function AdmissionsPage() {
               ))}
             </ul>
           </div>
-          {/* Boarding School */}
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10">
               <Home className="h-7 w-7 text-secondary" />
@@ -178,13 +239,7 @@ export default function AdmissionsPage() {
             <h3 className="mb-4 text-2xl font-bold text-text">Boarding School</h3>
             <p className="mb-6 text-text-light leading-relaxed">Boarding students thrive in a secure, well-supervised environment that promotes discipline and independence.</p>
             <ul className="space-y-3">
-              {[
-                "Secure and well-supervised dormitories",
-                "Balanced and nutritious meal programs",
-                "Evening prep and academic support sessions",
-                "24/7 pastoral care and supervision",
-                "Structured daily routine for discipline and independence",
-              ].map((item) => (
+              {["Secure and well-supervised dormitories", "Balanced and nutritious meal programs", "Evening prep and academic support sessions", "24/7 pastoral care and supervision", "Structured daily routine for discipline and independence"].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <svg className="mt-0.5 h-5 w-5 shrink-0 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -198,7 +253,7 @@ export default function AdmissionsPage() {
       </SectionWrapper>
 
       {/* Admission Office Contact */}
-      <SectionWrapper>
+      <SectionWrapper bg="light">
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-12">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Get In Touch</p>
@@ -213,14 +268,13 @@ export default function AdmissionsPage() {
               <h4 className="mb-3 font-bold text-text">Phone / WhatsApp</h4>
               <p className="text-sm text-text-light">+255 754 947 370</p>
               <p className="text-sm text-text-light">+255 755 394 008</p>
-              <p className="text-sm text-text-light">+255 684 071 399</p>
             </div>
             <div className="rounded-2xl bg-bg p-8">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                 <Mail className="h-6 w-6 text-primary" />
               </div>
               <h4 className="mb-3 font-bold text-text">Email</h4>
-              <p className="text-sm text-text-light break-all">brainyieldschools@gmail.com</p>
+              <p className="text-sm text-text-light break-all">brainyield.schools2020@gmail.com</p>
             </div>
             <div className="rounded-2xl bg-bg p-8">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
@@ -234,8 +288,8 @@ export default function AdmissionsPage() {
         </div>
       </SectionWrapper>
 
-      {/* Application Form */}
-      <SectionWrapper bg="light">
+      {/* Online Inquiry Form */}
+      <SectionWrapper>
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-12">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Get Started</p>
@@ -249,7 +303,7 @@ export default function AdmissionsPage() {
       </SectionWrapper>
 
       {/* FAQ */}
-      <SectionWrapper>
+      <SectionWrapper bg="light">
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-12">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Got Questions?</p>

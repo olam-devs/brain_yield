@@ -3,13 +3,14 @@ import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import TestimonialCard from "@/components/TestimonialCard";
 import CTABanner from "@/components/CTABanner";
+import { client } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "Read what parents, students, and alumni say about their experience at Brain Yield Schools.",
 };
 
-const testimonials = [
+const fallbackTestimonials = [
   { name: "Mrs. Adunni Bakare", role: "Parent — Primary School", rating: 5, quote: "Brain Yield Schools has transformed my child's learning experience. The teachers are dedicated and the environment is truly nurturing. My daughter now looks forward to school every morning." },
   { name: "David Okonkwo", role: "Alumni — Class of 2020", rating: 5, quote: "The foundation I received at Brain Yield prepared me for university and beyond. The critical thinking skills and values instilled in me continue to guide my academic journey." },
   { name: "Mrs. Fatima Hassan", role: "Parent — Secondary School", rating: 5, quote: "The holistic approach to education here is remarkable. My children have grown academically, socially, and in character. The school truly lives up to its promise of nurturing excellence." },
@@ -21,25 +22,35 @@ const testimonials = [
   { name: "Mrs. Aisha Yusuf", role: "Parent — Pre-School", rating: 5, quote: "The care and attention given to the youngest learners is outstanding. The teachers are patient, loving, and professional. My child has blossomed since joining Brain Yield." },
 ];
 
-export default function TestimonialsPage() {
+async function getTestimonials() {
+  try {
+    const results = await client.fetch(
+      `*[_type == "testimonial"] | order(_createdAt asc) { name, role, quote, rating }`
+    );
+    return results.length > 0 ? results : fallbackTestimonials;
+  } catch {
+    return fallbackTestimonials;
+  }
+}
+
+export default async function TestimonialsPage() {
+  const testimonials = await getTestimonials();
+
   return (
     <>
-      {/* Replace bgImage with your own: "/images/testimonials-hero.jpg" */}
       <HeroSection
         title="Testimonials"
         subtitle="Voices of Our Community"
         description="Hear from the parents, students, and alumni who make Brain Yield Schools a vibrant learning community."
         bgImage="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&h=600&fit=crop"
       />
-
       <SectionWrapper>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t) => (
+          {testimonials.map((t: { name: string; role: string; quote: string; rating: number }) => (
             <TestimonialCard key={t.name} {...t} />
           ))}
         </div>
       </SectionWrapper>
-
       <CTABanner />
     </>
   );
