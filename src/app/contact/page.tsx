@@ -6,13 +6,13 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with Brain Yield Schools — visit us at Salasala, Dar es Salaam. Call 0754 947 370 or email brainyieldschools@gmail.com.",
+  description: "Get in touch with Brain Yield Schools — visit us at Salasala, Dar es Salaam. Call 0754 947 370 or email brainyield.schools2020@gmail.com.",
 };
 
 const contactInfo = [
   { Icon: MapPin, title: "Visit Us", details: ["Best One Road, Salasala", "Kinondoni, Dar es Salaam", "Tanzania"] },
   { Icon: Phone, title: "Call Us", details: ["Director: +255 754 947 370", "Manager: +255 755 394 008", "Head Pre & Primary:\n+255 657 337 849", "Head Secondary:\n+255 620 839 096"] },
-  { Icon: Mail, title: "Email Us", details: ["brainyieldschools@gmail.com"] },
+  { Icon: Mail, title: "Email Us", details: ["brainyield.schools2020@gmail.com"] },
   { Icon: Clock, title: "Office Hours", details: ["Monday - Friday: 7:30 AM - 4:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"] },
 ];
 
