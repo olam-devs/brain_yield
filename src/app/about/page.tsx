@@ -3,6 +3,7 @@ import { Star, Shield, Lightbulb, Handshake, Sprout, Users, Target, Eye } from "
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTABanner from "@/components/CTABanner";
+import { client, urlFor } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -18,14 +19,26 @@ const values = [
   { Icon: Users, title: "Community", description: "We foster teamwork, environmental awareness, and active engagement with the wider community." },
 ];
 
-const leaders = [
+const fallbackLeaders = [
   { name: "School Director", position: "Founder / Director", bio: "Our founder established Brain Yield Schools with a vision to create a quality learning institution at Salasala that nurtures every child's potential and builds confident, responsible leaders.", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Academics", position: "Academic Director", bio: "Overseeing curriculum development and ensuring academic excellence across Nursery, Primary, and Secondary programs with personalized learning approaches.", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Administration", position: "Administrative Director", bio: "Ensuring smooth operations, safe boarding facilities, and a conducive learning environment across our 4-story campus.", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" },
   { name: "Head of Student Affairs", position: "Student Welfare Director", bio: "Coordinating extracurricular activities, boarding supervision, the School Garden Project, and holistic student development programs.", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face" },
 ];
 
-export default function AboutPage() {
+async function getLeaders() {
+  try {
+    const results = await client.fetch(
+      `*[_type == "leadershipTeam"] | order(order asc) { name, position, bio, image }`
+    );
+    return results.length > 0 ? results : fallbackLeaders;
+  } catch {
+    return fallbackLeaders;
+  }
+}
+
+export default async function AboutPage() {
+  const leaders = await getLeaders();
   return (
     <>
       <HeroSection
@@ -131,10 +144,15 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {leaders.map((leader) => (
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {leaders.map((leader: any) => (
             <div key={leader.name} className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border/50">
               <div className="relative h-64 overflow-hidden">
-                <img src={leader.image} alt={leader.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img
+                  src={leader.image && typeof leader.image === "object" ? urlFor(leader.image).width(400).height(400).url() : leader.image}
+                  alt={leader.name}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
               <div className="p-6 text-center">
                 <h4 className="text-lg font-bold text-text">{leader.name}</h4>

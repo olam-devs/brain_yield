@@ -75,5 +75,21 @@ const applicationFormSchema = defineType({
   },
 });
 
-const schemas = [gallerySchema, testimonialSchema, newsSchema, applicationFormSchema];
+const leadershipSchema = defineType({
+  name: "leadershipTeam",
+  title: "Leadership Team",
+  type: "document",
+  fields: [
+    defineField({ name: "name", title: "Full Name", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "position", title: "Position / Title", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "bio", title: "Bio", type: "text", validation: (Rule) => Rule.required() }),
+    defineField({ name: "image", title: "Photo", type: "image", options: { hotspot: true } }),
+    defineField({ name: "order", title: "Display Order (lower = first)", type: "number" }),
+  ],
+  preview: {
+    select: { title: "name", subtitle: "position", media: "image" },
+  },
+});
+
+const schemas = [gallerySchema, testimonialSchema, newsSchema, applicationFormSchema, leadershipSchema];
 export default schemas;
