@@ -4,6 +4,8 @@ import SectionWrapper from "@/components/SectionWrapper";
 import NewsCard from "@/components/NewsCard";
 import { client, urlFor } from "@/lib/sanity";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "News & Events",
   description: "Stay updated with the latest news, events, and announcements from Brain Yield Schools, Salasala, Dar es Salaam.",

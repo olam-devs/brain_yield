@@ -6,6 +6,8 @@ import FAQAccordion from "@/components/FAQAccordion";
 import ContactForm from "@/components/ContactForm";
 import { client } from "@/lib/sanity";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Admissions",
   description: "Apply to Brain Yield Schools at Salasala, Dar es Salaam — Nursery, Primary, and Secondary admission with day and boarding options.",

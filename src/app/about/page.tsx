@@ -5,6 +5,8 @@ import SectionWrapper from "@/components/SectionWrapper";
 import CTABanner from "@/components/CTABanner";
 import { client, urlFor } from "@/lib/sanity";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Brain Yield Schools at Salasala, Dar es Salaam — our history, mission, vision, core values, and leadership team.",

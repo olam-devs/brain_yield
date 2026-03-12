@@ -4,6 +4,8 @@ import SectionWrapper from "@/components/SectionWrapper";
 import GalleryGrid from "@/components/GalleryGrid";
 import { client, urlFor } from "@/lib/sanity";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Gallery",
   description: "View photos from Brain Yield Schools — campus life, events, academics, sports, and more.",

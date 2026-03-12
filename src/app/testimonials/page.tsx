@@ -5,6 +5,8 @@ import TestimonialCard from "@/components/TestimonialCard";
 import CTABanner from "@/components/CTABanner";
 import { client } from "@/lib/sanity";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "Read what parents, students, and alumni say about their experience at Brain Yield Schools.",
