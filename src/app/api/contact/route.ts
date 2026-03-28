@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
   const { error } = await resend.emails.send({
     from: "Brain Yield Schools <onboarding@resend.dev>",
-    to: ["brainyieldschools@gmail.com"],
+    to: ["brainyield.schools2020@gmail.com"],
     replyTo: email,
     subject: `New Contact: ${subjectLabels[subject] ?? subject} — ${name}`,
     html: `
@@ -71,6 +71,7 @@ export async function POST(req: Request) {
   });
 
   if (error) {
+    console.error("Resend error:", JSON.stringify(error));
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 

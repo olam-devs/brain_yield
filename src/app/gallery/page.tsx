@@ -2,38 +2,36 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import GalleryGrid from "@/components/GalleryGrid";
+import { client, urlFor } from "@/lib/sanity";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: "View photos from Brain Yield Schools — campus life, events, academics, sports, and more.",
 };
 
-const galleryImages = [
-  // Campus — labelled photos
+const localImages = [
   { src: "/school%20pics/Main%20gate.PNG", alt: "Brain Yield Schools main entrance gate", category: "Campus" },
   { src: "/school%20pics/school%20view%207.jpg", alt: "School campus view", category: "Campus" },
   { src: "/school%20pics/school%20view%208.jpg", alt: "School campus exterior", category: "Campus" },
   { src: "/school%20pics/school%20view%209.jpg", alt: "Campus grounds", category: "Campus" },
   { src: "/school%20pics/school%20bus.jpg", alt: "Brain Yield Schools bus", category: "Campus" },
   { src: "/school%20pics/swings%20for%20kids.PNG", alt: "Playground swings for young learners", category: "Campus" },
-  // Sports — labelled photos
   { src: "/school%20pics/sports%20-%20football.PNG", alt: "Students playing football", category: "Sports" },
   { src: "/school%20pics/rope%20pulling%20playground.PNG", alt: "Rope pulling activity on the playground", category: "Sports" },
-  // Events — assemblies, ceremonies, performances
   { src: "/school%20pics/IMG_5966.jpg", alt: "Full school assembly", category: "Events" },
   { src: "/school%20pics/IMG_5973.jpg", alt: "Students marching band performance", category: "Events" },
   { src: "/school%20pics/IMG_5977.jpg", alt: "School assembly with all students", category: "Events" },
   { src: "/school%20pics/IMG_5980.jpg", alt: "Students in outdoor assembly", category: "Events" },
   { src: "/school%20pics/IMG_6007.jpg", alt: "Primary students group photo", category: "Events" },
   { src: "/school%20pics/IMG_6045.jpg", alt: "Kindergarten graduation ceremony", category: "Events" },
-  // Campus — buildings & grounds
   { src: "/school%20pics/IMG_5988.jpg", alt: "Campus corridor and playground", category: "Campus" },
   { src: "/school%20pics/IMG_6061.jpg", alt: "4-story school building with students on balconies", category: "Campus" },
   { src: "/school%20pics/IMG_6092.jpg", alt: "Students working in the school garden", category: "Campus" },
   { src: "/school%20pics/IMG_6096.jpg", alt: "Students harvesting in school garden", category: "Campus" },
   { src: "/school%20pics/IMG_6350.jpg", alt: "Kindergarten nap room", category: "Campus" },
   { src: "/school%20pics/IMG_6685.jpg", alt: "Children on playground equipment", category: "Campus" },
-  // Academics — classrooms, labs, library
   { src: "/school%20pics/IMG_6126.jpg", alt: "Students in home economics — baking class", category: "Academics" },
   { src: "/school%20pics/IMG_6134.jpg", alt: "Students learning baking skills", category: "Academics" },
   { src: "/school%20pics/IMG_6179.jpg", alt: "Nursery classroom activity", category: "Academics" },
@@ -51,7 +49,6 @@ const galleryImages = [
   { src: "/school%20pics/IMG_6410.jpg", alt: "Students using computers in ICT lab", category: "Academics" },
   { src: "/school%20pics/IMG_6417.jpg", alt: "ICT teacher supervising students", category: "Academics" },
   { src: "/school%20pics/IMG_6422.jpg", alt: "Students working on computers with teacher", category: "Academics" },
-  // Sports — sports day and athletics
   { src: "/school%20pics/IMG_6576.jpg", alt: "Students in sports bibs on the field", category: "Sports" },
   { src: "/school%20pics/IMG_6626.jpg", alt: "Female sports team", category: "Sports" },
   { src: "/school%20pics/IMG_6631.jpg", alt: "Students exercising on sports field", category: "Sports" },
@@ -59,7 +56,6 @@ const galleryImages = [
   { src: "/school%20pics/IMG_6643.jpg", alt: "Students cheering at sports day", category: "Sports" },
   { src: "/school%20pics/IMG_6647.jpg", alt: "Students jumping during athletics", category: "Sports" },
   { src: "/school%20pics/IMG_6720.jpg", alt: "Football match action", category: "Sports" },
-  // School Life — remaining photos
   { src: "/school%20pics/IMG_6656.jpg", alt: "School life at Brain Yield", category: "School Life" },
   { src: "/school%20pics/IMG_6658.jpg", alt: "School life at Brain Yield", category: "School Life" },
   { src: "/school%20pics/IMG_6663.jpg", alt: "School life at Brain Yield", category: "School Life" },
@@ -87,7 +83,26 @@ const galleryImages = [
   { src: "/school%20pics/IMG_6853.jpg", alt: "School life at Brain Yield", category: "School Life" },
 ];
 
-export default function GalleryPage() {
+async function getSanityImages() {
+  try {
+    const results = await client.fetch(
+      `*[_type == "galleryImage"] | order(order asc) { title, image, category }`
+    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return results.map((item: any) => ({
+      src: urlFor(item.image).width(1200).url(),
+      alt: item.title || "Brain Yield Schools",
+      category: item.category || "Campus",
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function GalleryPage() {
+  const sanityImages = await getSanityImages();
+  const allImages = [...sanityImages, ...localImages];
+
   return (
     <>
       <HeroSection
@@ -96,9 +111,8 @@ export default function GalleryPage() {
         description="A glimpse into the vibrant life, events, and activities at Brain Yield Schools."
         bgImage="/school%20pics/school%20view%208.jpg"
       />
-
       <SectionWrapper>
-        <GalleryGrid images={galleryImages} />
+        <GalleryGrid images={allImages} />
       </SectionWrapper>
     </>
   );
