@@ -73,7 +73,6 @@ export default function AboutPage() {
           </div>
         </div>
       </SectionWrapper>
-
       {/* Mission & Vision */}
       <SectionWrapper bg="light">
         <div className="grid gap-8 md:grid-cols-2">

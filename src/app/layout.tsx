@@ -9,7 +9,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const siteUrl = "https://brainyieldschools.sc.tz";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Brain Yield Schools — Together We Make The Difference With Excellence",
     template: "%s | Brain Yield Schools",
@@ -18,21 +21,114 @@ export const metadata: Metadata = {
     "Brain Yield Schools at Salasala, Dar es Salaam offers quality education from Nursery to Secondary level with day and boarding options. Nurturing confident, responsible leaders.",
   keywords: [
     "Brain Yield Schools",
+    "Brain Yield School",
+    "brainyieldschools",
+    "Brain Yield",
+    "Salasala school",
     "Salasala",
+    "Dar es Salaam school",
     "Dar es Salaam",
     "Tanzania",
-    "nursery",
-    "primary school",
-    "secondary school",
-    "boarding school",
-    "education",
+    "Tanzania school",
+    "nursery school Tanzania",
+    "primary school Tanzania",
+    "secondary school Tanzania",
+    "boarding school Tanzania",
+    "boarding school Dar es Salaam",
+    "private school Dar es Salaam",
+    "private school Tanzania",
+    "best school Dar es Salaam",
+    "best school Tanzania",
+    "school Salasala",
+    "Kinondoni school",
+    "pre-primary school",
+    "O-Level Tanzania",
+    "day and boarding school",
+    "education Tanzania",
+    "quality education Tanzania",
+    "school fees Tanzania",
+    "admissions Tanzania",
   ],
+  authors: [{ name: "Brain Yield Schools", url: siteUrl }],
+  creator: "Brain Yield Schools",
+  publisher: "Brain Yield Schools",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: "Brain Yield Schools — Together We Make The Difference With Excellence",
     description:
       "Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
     type: "website",
+    url: siteUrl,
+    siteName: "Brain Yield Schools",
+    locale: "en_TZ",
+    images: [
+      {
+        url: "/school pics/school logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Brain Yield Schools — Salasala, Dar es Salaam",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Brain Yield Schools — Together We Make The Difference With Excellence",
+    description:
+      "Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
+    images: ["/school pics/school logo.jpg"],
+  },
+  category: "education",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["School", "EducationalOrganization"],
+  name: "Brain Yield Schools",
+  alternateName: ["Brain Yield School", "BYS"],
+  url: siteUrl,
+  logo: `${siteUrl}/school pics/school logo.jpg`,
+  image: `${siteUrl}/school pics/front view.PNG`,
+  description:
+    "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Best One Road, Salasala",
+    addressLocality: "Kinondoni",
+    addressRegion: "Dar es Salaam",
+    addressCountry: "TZ",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -6.8235,
+    longitude: 39.2695,
+  },
+  telephone: ["+255754947370", "+255755394008"],
+  email: "brainyieldschools@gmail.com",
+  openingHours: ["Mo-Fr 07:30-16:00", "Sa 09:00-13:00"],
+  hasMap: "https://maps.google.com/?q=Salasala,Dar+es+Salaam,Tanzania",
+  sameAs: [],
+  educationalCredentialAwarded: [
+    "Pre-Primary Certificate",
+    "Primary Education Certificate",
+    "O-Level Certificate (CSEE)",
+  ],
+  teaches: [
+    "Pre-Primary Education (Nursery & Kindergarten)",
+    "Primary Education (Standard 1–7)",
+    "Secondary Education (Form 1–4, O-Level)",
+  ],
 };
 
 export default function RootLayout({
@@ -42,6 +138,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <Navbar />
         <main>{children}</main>
