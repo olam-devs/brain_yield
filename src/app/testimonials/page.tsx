@@ -10,6 +10,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "Read what parents, students, and alumni say about their experience at Brain Yield Schools.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/testimonials",
+  },
 };
 
 const fallbackTestimonials = [

@@ -9,6 +9,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "News & Events",
   description: "Stay updated with the latest news, events, and announcements from Brain Yield Schools, Salasala, Dar es Salaam.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/news",
+  },
 };
 
 const fallbackFeatured = {

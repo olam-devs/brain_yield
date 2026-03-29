@@ -7,6 +7,9 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Brain Yield Schools — visit us at Salasala, Dar es Salaam. Call 0754 947 370 or email brainyield.schools2020@gmail.com.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/contact",
+  },
 };
 
 const contactInfo = [

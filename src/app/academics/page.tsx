@@ -7,6 +7,9 @@ import CTABanner from "@/components/CTABanner";
 export const metadata: Metadata = {
   title: "Academic Programs",
   description: "Explore Brain Yield Schools' academic programs — Nursery, Primary, and Secondary education with day and boarding options in Dar es Salaam.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/academics",
+  },
 };
 
 const programs = [

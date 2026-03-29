@@ -65,6 +65,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  verification: {
+    google: "oKgSv0v2D67hMiNJbgVD7KmkLxRVQZao2B_h_TmZHS8",
+  },
   openGraph: {
     title: "Brain Yield Schools — Together We Make The Difference With Excellence",
     description:

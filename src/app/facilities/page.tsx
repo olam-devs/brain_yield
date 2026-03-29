@@ -6,6 +6,9 @@ import CTABanner from "@/components/CTABanner";
 export const metadata: Metadata = {
   title: "Facilities",
   description: "Explore Brain Yield Schools' modern facilities — 4-story building, computer labs, boarding dormitories, and more in Salasala, Dar es Salaam.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/facilities",
+  },
 };
 
 const facilities = [

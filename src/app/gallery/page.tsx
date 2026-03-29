@@ -9,6 +9,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Gallery",
   description: "View photos from Brain Yield Schools — campus life, events, academics, sports, and more.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/gallery",
+  },
 };
 
 const localImages = [

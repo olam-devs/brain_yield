@@ -11,6 +11,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Admissions",
   description: "Apply to Brain Yield Schools at Salasala, Dar es Salaam — Nursery, Primary, and Secondary admission with day and boarding options.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/admissions",
+  },
 };
 
 const steps = [
@@ -60,11 +63,28 @@ async function getApplicationForms(): Promise<ApplicationForm[]> {
   }
 }
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
+    },
+  })),
+};
+
 export default async function AdmissionsPage() {
   const applicationForms = await getApplicationForms();
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection
         title="Admissions"
         subtitle="Now Enrolling — Pre-Primary, Primary & Secondary"

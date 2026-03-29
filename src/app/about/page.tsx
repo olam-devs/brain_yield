@@ -10,6 +10,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Brain Yield Schools at Salasala, Dar es Salaam — our history, mission, vision, core values, and leadership team.",
+  alternates: {
+    canonical: "https://brainyieldschools.sc.tz/about",
+  },
 };
 
 const values = [
