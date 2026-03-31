@@ -14,15 +14,18 @@ const siteUrl = "https://brainyieldschools.sc.tz";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Brain Yield Schools — Together We Make The Difference With Excellence",
-    template: "%s | Brain Yield Schools",
+    default: "Brain Yield Schools | Official School Website — Together We Make The Difference With Excellence",
+    template: "%s | Brain Yield Schools — Official Website",
   },
   description:
-    "Brain Yield Schools at Salasala, Dar es Salaam offers quality education from Nursery to Secondary level with day and boarding options. Nurturing confident, responsible leaders.",
+    "Official website of Brain Yield Schools — Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available. Nurturing confident, responsible leaders.",
   keywords: [
+    "Brain Yield Schools official website",
     "Brain Yield Schools",
     "Brain Yield School",
+    "brainyieldschools official",
     "brainyieldschools",
+    "Brain Yield official",
     "Brain Yield",
     "Salasala school",
     "Salasala",
@@ -69,28 +72,28 @@ export const metadata: Metadata = {
     google: "oKgSv0v2D67hMiNJbgVD7KmkLxRVQZao2B_h_TmZHS8",
   },
   openGraph: {
-    title: "Brain Yield Schools — Together We Make The Difference With Excellence",
+    title: "Brain Yield Schools | Official School Website — Together We Make The Difference With Excellence",
     description:
-      "Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
+      "Official website of Brain Yield Schools. Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
     type: "website",
     url: siteUrl,
-    siteName: "Brain Yield Schools",
+    siteName: "Brain Yield Schools — Official Website",
     locale: "en_TZ",
     images: [
       {
-        url: "/school pics/school logo.jpg",
+        url: "/official-logo.jpeg",
         width: 1200,
         height: 630,
-        alt: "Brain Yield Schools — Salasala, Dar es Salaam",
+        alt: "Brain Yield Schools Official Logo — Salasala, Dar es Salaam",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brain Yield Schools — Together We Make The Difference With Excellence",
+    title: "Brain Yield Schools | Official School Website — Together We Make The Difference With Excellence",
     description:
-      "Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
-    images: ["/school pics/school logo.jpg"],
+      "Official website of Brain Yield Schools. Quality education from Nursery to Secondary at Salasala, Dar es Salaam. Day and boarding options available.",
+    images: ["/official-logo.jpeg"],
   },
   category: "education",
 };
@@ -101,7 +104,7 @@ const jsonLd = {
   name: "Brain Yield Schools",
   alternateName: ["Brain Yield School", "BYS"],
   url: siteUrl,
-  logo: `${siteUrl}/school pics/school logo.jpg`,
+  logo: `${siteUrl}/official-logo.jpeg`,
   image: `${siteUrl}/school pics/front view.PNG`,
   description:
     "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
@@ -121,7 +124,13 @@ const jsonLd = {
   email: "brainyieldschools@gmail.com",
   openingHours: ["Mo-Fr 07:30-16:00", "Sa 09:00-13:00"],
   hasMap: "https://maps.google.com/?q=Salasala,Dar+es+Salaam,Tanzania",
-  sameAs: [],
+  sameAs: [
+    "https://www.youtube.com/@brainyieldschools",
+    "https://www.instagram.com/brainyieldschools",
+    "https://www.facebook.com/brainyieldschools",
+    "https://www.threads.net/@brainyieldschools",
+    "https://www.tiktok.com/@brainyieldschools",
+  ],
   educationalCredentialAwarded: [
     "Pre-Primary Certificate",
     "Primary Education Certificate",

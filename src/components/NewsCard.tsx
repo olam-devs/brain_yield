@@ -7,6 +7,7 @@ interface NewsCardProps {
   category: string;
   image: string;
   slug?: string;
+  href?: string;
 }
 
 export default function NewsCard({
@@ -15,6 +16,7 @@ export default function NewsCard({
   date,
   category,
   image,
+  href,
 }: NewsCardProps) {
   return (
     <div className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border/50">
@@ -40,7 +42,9 @@ export default function NewsCard({
           {excerpt}
         </p>
         <Link
-          href="/news"
+          href={href ?? "/news"}
+          target={href?.startsWith("http") ? "_blank" : undefined}
+          rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
           className="inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-secondary"
         >
           Read More

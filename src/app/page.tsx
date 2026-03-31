@@ -58,7 +58,7 @@ const testimonials = [
 const news = [
   { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "/school%20pics/Main%20gate.PNG" },
   { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "/school%20pics/IMG_6410.jpg" },
-  { title: "Continued Strong National Examination Performance", excerpt: "Brain Yield Schools maintains its proud record of outstanding results in national examinations, with students achieving excellent grades across all subjects — a testament to our dedicated teachers and learners.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg" },
+  { title: "PSLE 2024 Results — 100% Pass Rate", excerpt: "Brain Yield Schools achieved a 100% pass rate in the 2024 Primary School Leaving Examination (PSLE). View our official NECTA results and celebrate this outstanding achievement with us.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg", href: "https://onlinesys.necta.go.tz/results/2024/psle/results/shl_ps0203170.htm" },
 ];
 
 const activities = [

@@ -17,7 +17,7 @@ const slides = [
     src: "/school%20pics/school%20view%201.jpg",
     alt: "Brain Yield Schools campus building",
     heading: "Together We Make The Difference With Excellence",
-    subheading: "Quality education from Nursery to Secondary in Salasala, Dar es Salaam",
+    subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam",
   },
   {
     src: "/school%20pics/pre%20primary%20in%20assembly.PNG",

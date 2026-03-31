@@ -87,8 +87,8 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.jpeg"
-              alt="Brain Yield Schools Logo"
+              src="/official-logo.jpeg"
+              alt="Brain Yield Schools Official Logo"
               width={56}
               height={56}
               className="h-14 w-14 object-contain"
