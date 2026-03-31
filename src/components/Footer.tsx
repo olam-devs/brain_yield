@@ -162,7 +162,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Globe className="h-4 w-4 shrink-0 text-secondary" />
-                <span>brainyieldschools.ac.tz</span>
+                <span>brainyieldschools.sc.tz</span>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
