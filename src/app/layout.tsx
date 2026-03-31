@@ -52,6 +52,11 @@ export const metadata: Metadata = {
     "school fees Tanzania",
     "admissions Tanzania",
   ],
+  icons: {
+    icon: "/official-logo.jpeg",
+    shortcut: "/official-logo.jpeg",
+    apple: "/official-logo.jpeg",
+  },
   authors: [{ name: "Brain Yield Schools", url: siteUrl }],
   creator: "Brain Yield Schools",
   publisher: "Brain Yield Schools",
