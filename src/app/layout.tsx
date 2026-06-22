@@ -136,6 +136,12 @@ const jsonLd = {
     "https://www.threads.net/@brainyieldschools",
     "https://www.tiktok.com/@brainyieldschools",
   ],
+  creator: {
+    "@type": "Person",
+    name: "Dionis Edward Lenga",
+    alternateName: "diolenga",
+    url: "https://diolenga.tech",
+  },
   educationalCredentialAwarded: [
     "Pre-Primary Certificate",
     "Primary Education Certificate",
