@@ -2,44 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import type { HeroSlide } from "@/lib/content";
 
-/*
- * ===========================================
- * HOW TO REPLACE IMAGES:
- * Update the `src` field in each slide below
- * with your own image path, e.g.:
- *   src: "/images/hero-1.jpg"
- * Place your images in the /public/images/ folder.
- * ===========================================
- */
-const slides = [
-  {
-    src: "/school%20pics/school%20view%201.jpg",
-    alt: "Brain Yield Schools campus building",
-    heading: "Together We Make The Difference With Excellence",
-    subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam",
-  },
-  {
-    src: "/school%20pics/pre%20primary%20in%20assembly.PNG",
-    alt: "Pre-primary students in assembly",
-    heading: "Nurturing Confident, Responsible Leaders",
-    subheading: "Personalized learning with both day and boarding options for every family",
-  },
-  {
-    src: "/school%20pics/school%20view%202.jpg",
-    alt: "Brain Yield Schools campus",
-    heading: "100% Pass Rate — PSLE 2024",
-    subheading: "Proven academic excellence with top grades across all subjects",
-  },
-  {
-    src: "/school%20pics/school%20view%203.jpg",
-    alt: "Modern campus facilities",
-    heading: "Modern Facilities, Holistic Development",
-    subheading: "4-story campus with computer labs, boarding dormitories, and a school garden",
-  },
-];
-
-export default function HeroSlideshow() {
+export default function HeroSlideshow({ slides, tagline }: { slides: HeroSlide[]; tagline?: string }) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -60,8 +25,8 @@ export default function HeroSlideshow() {
           }`}
         >
           <img
-            src={slide.src}
-            alt={slide.alt}
+            src={slide.imageUrl}
+            alt={slide.heading}
             className="h-full w-full object-cover"
           />
           {/* Dark overlay with school colors */}
@@ -73,7 +38,7 @@ export default function HeroSlideshow() {
       <div className="relative z-20 flex h-full items-center justify-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-20">
           <p className="mb-4 inline-block rounded-full bg-secondary/30 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm border border-secondary/30">
-            Welcome to Brain Yield Schools — Salasala, Kinondoni, Dar es Salaam
+            {tagline || "Welcome to Brain Yield Schools — Salasala, Kinondoni, Dar es Salaam"}
           </p>
           <h1
             key={current}

@@ -1,95 +1,95 @@
 import Link from "next/link";
-import {
-  GraduationCap, BookOpen, Building2, Globe, Home as HomeIcon, Trophy,
-  ClipboardList, Dumbbell, Mic2, Monitor, Award,
-} from "lucide-react";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import StatsCounter from "@/components/StatsCounter";
 import SectionWrapper from "@/components/SectionWrapper";
 import TestimonialCard from "@/components/TestimonialCard";
 import NewsCard from "@/components/NewsCard";
 import CTABanner from "@/components/CTABanner";
+import { getIcon } from "@/lib/icons";
+import {
+  getSiteSettings,
+  getHomePageContent,
+  getHeroSlides,
+  getPrograms,
+  getFeatureItems,
+  getActivityItems,
+} from "@/lib/content";
+import { client, urlFor } from "@/lib/sanity";
 
-/*
- * ===========================================
- * HOW TO REPLACE IMAGES:
- * Update image URLs below with your own paths.
- * Place images in /public/images/ folder, then use:
- *   image: "/images/your-image.jpg"
- * ===========================================
- */
+export const revalidate = 3600;
 
-const programs = [
-  {
-    title: "Pre-Primary",
-    description: "Early childhood education for ages 3–5, focusing on literacy, numeracy, communication skills, and social development in a safe and nurturing environment. Available as Day and Boarding.",
-    image: "/school%20pics/pre%20primary%20in%20assembly.PNG",
-    href: "/academics#nursery",
-  },
-  {
-    title: "Primary School",
-    description: "Standards 1–7 following the Tanzanian National Curriculum. Strong foundation in English, Kiswahili, Mathematics, Science & Technology, Social Studies, and ICT — with preparation for the PSLE. Day and Boarding available.",
-    image: "/school%20pics/school%20view%205.jpg",
-    href: "/academics#primary",
-  },
-  {
-    title: "Secondary School",
-    description: "Forms 1–4 following the National O-Level Curriculum. Qualified and experienced teachers, Science and Arts subject combinations, and thorough preparation for the CSEE. Day and Boarding available.",
-    image: "/school%20pics/school%20view%206.jpg",
-    href: "/academics#secondary",
-  },
-];
+async function getHomeTestimonials() {
+  try {
+    const results = await client.fetch(
+      `*[_type == "testimonial"] | order(_createdAt asc)[0...3] { name, role, quote, rating }`
+    );
+    if (results?.length) return results;
+  } catch {
+    // fall through to default
+  }
+  return [
+    { name: "Mrs. Sarah Mwangi", role: "Parent — Primary School", rating: 5, quote: "Brain Yield Schools has transformed my child's learning experience. The teachers are dedicated and the environment is truly nurturing. My daughter now looks forward to school every morning." },
+    { name: "Joseph Kimaro", role: "Alumni — Form 4 Graduate", rating: 5, quote: "The foundation I received at Brain Yield prepared me well for my national examinations and beyond. The personalized attention from teachers made all the difference." },
+    { name: "Mrs. Fatima Hassan", role: "Parent — Boarding Student", rating: 5, quote: "The boarding facilities are well-supervised and the holistic approach to education is remarkable. My children have grown academically, socially, and in character." },
+  ];
+}
 
-const features = [
-  { Icon: GraduationCap, title: "Dedicated Teachers", description: "Highly qualified and passionate educators committed to every student's success." },
-  { Icon: BookOpen, title: "Personalized Learning", description: "Tailored educational approaches that meet each child where they are and help them excel." },
-  { Icon: Building2, title: "Modern 4-Story Campus", description: "Spacious classrooms, equipped labs, and boarding dormitories in our state-of-the-art facility." },
-  { Icon: Globe, title: "Holistic Development", description: "Academics, extracurriculars, and community engagement for well-rounded growth." },
-  { Icon: HomeIcon, title: "Day & Boarding Options", description: "Flexible day and boarding arrangements to accommodate every family's needs." },
-  { Icon: Trophy, title: "Proven Academic Results", description: "Consistently outstanding performance in national examinations with top grades across subjects." },
-];
+async function getHomeNews() {
+  try {
+    const results = await client.fetch(
+      `*[_type == "news"] | order(publishedAt desc)[0...3] { title, excerpt, category, image, publishedAt }`
+    );
+    if (results?.length) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return results.map((item: any) => ({
+        title: item.title,
+        excerpt: item.excerpt || "",
+        date: item.publishedAt
+          ? new Date(item.publishedAt).toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+          : "",
+        category: item.category || "News",
+        image: item.image ? urlFor(item.image).width(800).url() : "/school%20pics/IMG_5977.jpg",
+      }));
+    }
+  } catch {
+    // fall through to default
+  }
+  return [
+    { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "/school%20pics/Main%20gate.PNG" },
+    { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "/school%20pics/IMG_6410.jpg" },
+    { title: "PSLE 2024 Results — 100% Pass Rate", excerpt: "Brain Yield Schools achieved a 100% pass rate in the 2024 Primary School Leaving Examination (PSLE). View our official NECTA results and celebrate this outstanding achievement with us.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg", href: "https://onlinesys.necta.go.tz/results/2024/psle/results/shl_ps0203170.htm" },
+  ];
+}
 
-const testimonials = [
-  { name: "Mrs. Sarah Mwangi", role: "Parent — Primary School", rating: 5, quote: "Brain Yield Schools has transformed my child's learning experience. The teachers are dedicated and the environment is truly nurturing. My daughter now looks forward to school every morning." },
-  { name: "Joseph Kimaro", role: "Alumni — Form 4 Graduate", rating: 5, quote: "The foundation I received at Brain Yield prepared me well for my national examinations and beyond. The personalized attention from teachers made all the difference." },
-  { name: "Mrs. Fatima Hassan", role: "Parent — Boarding Student", rating: 5, quote: "The boarding facilities are well-supervised and the holistic approach to education is remarkable. My children have grown academically, socially, and in character." },
-];
+export default async function Home() {
+  const [settings, home, slides, allPrograms, features, activities, testimonials, news] = await Promise.all([
+    getSiteSettings(),
+    getHomePageContent(),
+    getHeroSlides(),
+    getPrograms(),
+    getFeatureItems(),
+    getActivityItems(),
+    getHomeTestimonials(),
+    getHomeNews(),
+  ]);
 
-const news = [
-  { title: "Admissions Open for 2026 Academic Year", excerpt: "Brain Yield Schools is now accepting applications for Pre-Primary, Primary, and Secondary students for the 2026 academic year. Both day and boarding options are available. Early application is encouraged.", date: "February 2026", category: "Admissions", image: "/school%20pics/Main%20gate.PNG" },
-  { title: "ICT & Computer Lab Program Expansion", excerpt: "We are expanding our ICT and Computer Lab programs to bring enhanced digital learning opportunities to students across all levels, from Pre-Primary to Secondary.", date: "January 2026", category: "News", image: "/school%20pics/IMG_6410.jpg" },
-  { title: "PSLE 2024 Results — 100% Pass Rate", excerpt: "Brain Yield Schools achieved a 100% pass rate in the 2024 Primary School Leaving Examination (PSLE). View our official NECTA results and celebrate this outstanding achievement with us.", date: "March 2024", category: "Achievements", image: "/school%20pics/IMG_5966.jpg", href: "https://onlinesys.necta.go.tz/results/2024/psle/results/shl_ps0203170.htm" },
-];
+  const programs = allPrograms.filter((p) => p.showOnHome).slice(0, 3);
 
-const activities = [
-  { Icon: ClipboardList, title: "Monthly Academic Assessments", description: "Regular assessments to monitor every student's progress and ensure they stay on track across all subjects." },
-  { Icon: Dumbbell, title: "Sports & Athletics", description: "Structured sports programs that build teamwork, fitness, discipline, and a healthy competitive spirit." },
-  { Icon: Mic2, title: "Debate & Academic Clubs", description: "Clubs that sharpen critical thinking, public speaking, and leadership skills through regular debates and competitions." },
-  { Icon: Monitor, title: "ICT & Computer Training", description: "Regular computer sessions equipping students with essential digital literacy and technology skills for the modern world." },
-  { Icon: Award, title: "Leadership & Character Seminars", description: "Dedicated programs that build integrity, responsibility, and leadership qualities in every learner." },
-];
-
-export default function Home() {
   return (
     <>
       {/* Hero Slideshow */}
-      <HeroSlideshow />
+      <HeroSlideshow slides={slides} tagline={`Welcome to ${settings.schoolName} — ${settings.addressLocality}, ${settings.addressRegion}`} />
 
       {/* Stats */}
-      <StatsCounter />
+      <StatsCounter stats={settings.stats} />
 
       {/* Welcome Introduction */}
       <SectionWrapper bg="light">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">About Us</p>
-          <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">Welcome to Brain Yield Schools</h2>
-          <p className="text-lg text-text-light leading-relaxed mb-4">
-            Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania.
-            We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.
-          </p>
-          <p className="text-text-light leading-relaxed">
-            Our commitment is to nurture academic excellence, strong character, creativity, and leadership skills in every learner.
-          </p>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">{home.welcomeTag}</p>
+          <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">{home.welcomeHeading}</h2>
+          <p className="text-lg text-text-light leading-relaxed mb-4">{home.welcomeParagraph1}</p>
+          <p className="text-text-light leading-relaxed">{home.welcomeParagraph2}</p>
         </div>
       </SectionWrapper>
 
@@ -106,13 +106,13 @@ export default function Home() {
           {programs.map((program) => (
             <div key={program.title} className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-border/50">
               <div className="relative h-56 overflow-hidden">
-                <img src={program.image} alt={program.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src={program.imageUrl} alt={program.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                 <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white">{program.title}</h3>
               </div>
               <div className="p-8">
-                <p className="mb-6 text-text-light leading-relaxed">{program.description}</p>
-                <Link href={program.href} className="inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-secondary">
+                <p className="mb-6 text-text-light leading-relaxed">{program.homeSummary}</p>
+                <Link href={`/academics#${program.slug}`} className="inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-secondary">
                   Learn More
                   <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -134,15 +134,18 @@ export default function Home() {
           </p>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <div key={feature.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-300 group-hover:bg-secondary/15 group-hover:scale-110">
-                <feature.Icon className="h-8 w-8 text-primary" />
+          {features.map((feature) => {
+            const Icon = getIcon(feature.icon);
+            return (
+              <div key={feature.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-300 group-hover:bg-secondary/15 group-hover:scale-110">
+                  <Icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-text">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-text-light">{feature.description}</p>
               </div>
-              <h3 className="mb-3 text-lg font-bold text-text">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-text-light">{feature.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </SectionWrapper>
 
@@ -156,17 +159,20 @@ export default function Home() {
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {activities.map((activity) => (
-            <div key={activity.title} className="flex gap-5 rounded-2xl bg-white p-6 shadow-sm border border-border/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                <activity.Icon className="h-6 w-6 text-primary" />
+          {activities.map((activity) => {
+            const Icon = getIcon(activity.icon);
+            return (
+              <div key={activity.title} className="flex gap-5 rounded-2xl bg-white p-6 shadow-sm border border-border/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                  <Icon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-bold text-text">{activity.title}</h3>
+                  <p className="text-sm leading-relaxed text-text-light">{activity.description}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-1 font-bold text-text">{activity.title}</h3>
-                <p className="text-sm leading-relaxed text-text-light">{activity.description}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </SectionWrapper>
 
@@ -177,7 +183,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-text md:text-4xl">What Parents & Students Say</h2>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
-          {testimonials.map((t) => (
+          {testimonials.map((t: { name: string; role: string; quote: string; rating: number }) => (
             <TestimonialCard key={t.name} {...t} />
           ))}
         </div>
@@ -195,7 +201,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-text md:text-4xl">Latest News & Updates</h2>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
-          {news.map((item) => (
+          {news.map((item: { title: string; excerpt: string; date: string; category: string; image: string; href?: string }) => (
             <NewsCard key={item.title} {...item} />
           ))}
         </div>
@@ -207,7 +213,13 @@ export default function Home() {
       </SectionWrapper>
 
       {/* CTA Banner */}
-      <CTABanner />
+      <CTABanner
+        heading={home.ctaHeading}
+        description={home.ctaDescription}
+        imageUrl={home.ctaImageUrl}
+        button1Text={home.ctaButton1Text}
+        button2Text={home.ctaButton2Text}
+      />
     </>
   );
 }

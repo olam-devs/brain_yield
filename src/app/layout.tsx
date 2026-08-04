@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getSiteSettings } from "@/lib/content";
+
+export const revalidate = 3600;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -103,62 +106,69 @@ export const metadata: Metadata = {
   category: "education",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": ["School", "EducationalOrganization"],
-  name: "Brain Yield Schools",
-  alternateName: ["Brain Yield School", "BYS"],
-  url: siteUrl,
-  logo: `${siteUrl}/official-logo.jpeg`,
-  image: `${siteUrl}/school pics/front view.PNG`,
-  description:
-    "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Best One Road, Salasala",
-    addressLocality: "Kinondoni",
-    addressRegion: "Dar es Salaam",
-    addressCountry: "TZ",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: -6.8235,
-    longitude: 39.2695,
-  },
-  telephone: ["+255754947370", "+255755394008"],
-  email: "brainyieldschools@gmail.com",
-  openingHours: ["Mo-Fr 07:30-16:00", "Sa 09:00-13:00"],
-  hasMap: "https://maps.google.com/?q=Salasala,Dar+es+Salaam,Tanzania",
-  sameAs: [
-    "https://www.youtube.com/@brainyieldschools",
-    "https://www.instagram.com/brainyieldschools",
-    "https://www.facebook.com/brainyieldschools",
-    "https://www.threads.net/@brainyieldschools",
-    "https://www.tiktok.com/@brainyieldschools",
-  ],
-  creator: {
-    "@type": "Person",
-    name: "Dionis Edward Lenga",
-    alternateName: "diolenga",
-    url: "https://diolenga.tech",
-  },
-  educationalCredentialAwarded: [
-    "Pre-Primary Certificate",
-    "Primary Education Certificate",
-    "O-Level Certificate (CSEE)",
-  ],
-  teaches: [
-    "Pre-Primary Education (Nursery & Kindergarten)",
-    "Primary Education (Standard 1–7)",
-    "Secondary Education (Form 1–4, O-Level)",
-  ],
-};
+import type { SiteSettings } from "@/lib/content";
 
-export default function RootLayout({
+function buildJsonLd(settings: SiteSettings) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["School", "EducationalOrganization"],
+    name: settings.schoolName,
+    alternateName: ["Brain Yield School", "BYS"],
+    url: siteUrl,
+    logo: `${siteUrl}/official-logo.jpeg`,
+    image: `${siteUrl}/school pics/front view.PNG`,
+    description:
+      "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings.address,
+      addressLocality: settings.addressLocality,
+      addressRegion: settings.addressRegion,
+      addressCountry: "TZ",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -6.8235,
+      longitude: 39.2695,
+    },
+    telephone: settings.phones.map((p) => p.number.replace(/\s+/g, "")),
+    email: settings.email,
+    openingHours: ["Mo-Fr 07:30-16:00", "Sa 09:00-13:00"],
+    hasMap: "https://maps.google.com/?q=Salasala,Dar+es+Salaam,Tanzania",
+    sameAs: [
+      settings.youtubeUrl,
+      settings.instagramUrl,
+      settings.facebookUrl,
+      settings.threadsUrl,
+      settings.tiktokUrl,
+    ].filter(Boolean),
+    creator: {
+      "@type": "Person",
+      name: "Dionis Edward Lenga",
+      alternateName: "diolenga",
+      url: "https://diolenga.tech",
+    },
+    educationalCredentialAwarded: [
+      "Pre-Primary Certificate",
+      "Primary Education Certificate",
+      "O-Level Certificate (CSEE)",
+    ],
+    teaches: [
+      "Pre-Primary Education (Nursery & Kindergarten)",
+      "Primary Education (Standard 1–7)",
+      "Secondary Education (Form 1–4, O-Level)",
+    ],
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+  const jsonLd = buildJsonLd(settings);
+
   return (
     <html lang="en" className={inter.variable}>
       <head>
@@ -168,9 +178,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <Navbar />
+        <Navbar settings={settings} />
         <main>{children}</main>
-        <Footer />
+        <Footer settings={settings} />
       </body>
     </html>
   );

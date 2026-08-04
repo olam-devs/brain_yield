@@ -1,4 +1,15 @@
 import { defineField, defineType } from "sanity";
+import siteSettings from "./siteSettings";
+import homePage from "./homePage";
+import aboutPage from "./aboutPage";
+import admissionsPage from "./admissionsPage";
+import heroSlide from "./heroSlide";
+import program from "./program";
+import facility from "./facility";
+import featureItem from "./featureItem";
+import activityItem from "./activityItem";
+import coreValue from "./coreValue";
+import faq from "./faq";
 
 const gallerySchema = defineType({
   name: "galleryImage",
@@ -91,5 +102,31 @@ const leadershipSchema = defineType({
   },
 });
 
-const schemas = [gallerySchema, testimonialSchema, newsSchema, applicationFormSchema, leadershipSchema];
+const schemas = [
+  // Singletons
+  siteSettings,
+  homePage,
+  aboutPage,
+  admissionsPage,
+  // Collections
+  heroSlide,
+  program,
+  facility,
+  featureItem,
+  activityItem,
+  coreValue,
+  faq,
+  gallerySchema,
+  testimonialSchema,
+  newsSchema,
+  applicationFormSchema,
+  leadershipSchema,
+];
 export default schemas;
+
+export const SINGLETON_TYPES = new Set([
+  "siteSettings",
+  "homePage",
+  "aboutPage",
+  "admissionsPage",
+]);

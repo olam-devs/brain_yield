@@ -3,6 +3,9 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ContactForm from "@/components/ContactForm";
+import { getSiteSettings } from "@/lib/content";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -12,20 +15,33 @@ export const metadata: Metadata = {
   },
 };
 
-const contactInfo = [
-  { Icon: MapPin, title: "Visit Us", details: ["Best One Road, Salasala", "Kinondoni, Dar es Salaam", "Tanzania"] },
-  { Icon: Phone, title: "Call Us", details: ["Director: +255 754 947 370", "Manager: +255 755 394 008", "Head Pre & Primary:\n+255 657 337 849", "Head Secondary:\n+255 620 839 096"] },
-  { Icon: Mail, title: "Email Us", details: ["brainyield.schools2020@gmail.com"] },
-  { Icon: Clock, title: "Office Hours", details: ["Monday - Friday: 7:30 AM - 4:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"] },
-];
+export default async function ContactPage() {
+  const settings = await getSiteSettings();
 
-export default function ContactPage() {
+  const contactInfo = [
+    {
+      Icon: MapPin,
+      title: "Visit Us",
+      details: [settings.address, `${settings.addressLocality}, ${settings.addressRegion}`, settings.addressCountry],
+    },
+    {
+      Icon: Phone,
+      title: "Call Us",
+      details: settings.phones.map((p) => (p.label ? `${p.label}: ${p.number}` : p.number)),
+    },
+    { Icon: Mail, title: "Email Us", details: [settings.email] },
+    {
+      Icon: Clock,
+      title: "Office Hours",
+      details: settings.officeHours.map((h) => `${h.label}: ${h.hours}`),
+    },
+  ];
+
   return (
     <>
-      {/* Replace bgImage with your own: "/images/contact-hero.jpg" */}
       <HeroSection
         title="Contact Us"
-        subtitle="Get In Touch — Salasala, Dar es Salaam"
+        subtitle={`Get In Touch — ${settings.addressLocality}, ${settings.addressRegion}`}
         description="We'd love to hear from you. Reach out with any questions about admissions, programs, or to schedule a campus visit."
         bgImage="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1400&h=600&fit=crop"
       />
@@ -65,7 +81,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-text md:text-4xl mb-8">Our Location</h2>
             <div className="overflow-hidden rounded-2xl shadow-lg border border-border/50">
               <iframe
-                src="https://maps.google.com/maps?q=75WH%2BR5+Dar+es+Salaam&output=embed"
+                src={settings.mapEmbedUrl}
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

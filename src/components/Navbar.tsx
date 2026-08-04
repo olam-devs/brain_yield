@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import type { SiteSettings } from "@/lib/content";
 
 const programLinks = [
   { href: "/academics#nursery", label: "Nursery" },
@@ -54,12 +55,17 @@ function DropdownMenu({
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ settings }: { settings?: SiteSettings }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const logoUrl = settings?.logoUrl || "/official-logo.jpeg";
+  const nameWords = (settings?.schoolName || "Brain Yield Schools").split(" ");
+  const nameFirst = nameWords.slice(0, -1).join(" ") || nameWords[0];
+  const nameLast = nameWords.length > 1 ? nameWords[nameWords.length - 1] : "";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -87,20 +93,23 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/official-logo.jpeg"
-              alt="Brain Yield Schools Official Logo"
+              src={logoUrl}
+              alt={`${settings?.schoolName || "Brain Yield Schools"} Official Logo`}
               width={56}
               height={56}
               className="h-14 w-14 object-contain"
               priority
+              unoptimized={logoUrl.startsWith("http")}
             />
             <div className="hidden sm:block">
               <span className="text-xl font-bold tracking-tight text-primary">
-                Brain Yield
+                {nameFirst}
               </span>
-              <span className="block text-xs font-medium text-secondary">
-                Schools
-              </span>
+              {nameLast && (
+                <span className="block text-xs font-medium text-secondary">
+                  {nameLast}
+                </span>
+              )}
             </div>
           </Link>
 

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Star, Shield, Lightbulb, Handshake, Sprout, Users, Target, Eye } from "lucide-react";
+import { Target, Eye } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTABanner from "@/components/CTABanner";
 import { client, urlFor } from "@/lib/sanity";
+import { getAboutPageContent, getCoreValues } from "@/lib/content";
+import { getIcon } from "@/lib/icons";
 
 export const revalidate = 3600;
 
@@ -14,15 +16,6 @@ export const metadata: Metadata = {
     canonical: "https://brainyieldschools.sc.tz/about",
   },
 };
-
-const values = [
-  { Icon: Star, title: "Excellence", description: "We strive for the highest standards in everything we do, from teaching to character development." },
-  { Icon: Shield, title: "Integrity", description: "We uphold honesty, transparency, and ethical behavior in all our interactions." },
-  { Icon: Lightbulb, title: "Innovation", description: "We embrace modern approaches, digital learning, and creative thinking in education." },
-  { Icon: Handshake, title: "Respect", description: "We value diversity and treat every member of our community with dignity." },
-  { Icon: Sprout, title: "Responsibility", description: "We develop students who are accountable, caring, and socially conscious leaders." },
-  { Icon: Users, title: "Community", description: "We foster teamwork, environmental awareness, and active engagement with the wider community." },
-];
 
 const fallbackLeaders = [
   { name: "School Director", position: "Founder / Director", bio: "Our founder established Brain Yield Schools with a vision to create a quality learning institution at Salasala that nurtures every child's potential and builds confident, responsible leaders.", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" },
@@ -43,50 +36,42 @@ async function getLeaders() {
 }
 
 export default async function AboutPage() {
-  const leaders = await getLeaders();
+  const [about, values, leaders] = await Promise.all([
+    getAboutPageContent(),
+    getCoreValues(),
+    getLeaders(),
+  ]);
+
   return (
     <>
       <HeroSection
-        title="About Brain Yield Schools"
-        subtitle="Our Story — Salasala, Dar es Salaam"
-        description="Building a legacy of educational excellence in Tanzania, shaping young minds and transforming futures through personalized learning."
-        bgImage="/school%20pics/front%20view.PNG"
+        title={about.heroTitle}
+        subtitle={about.heroSubtitle}
+        description={about.heroDescription}
+        bgImage={about.heroImageUrl || "/school%20pics/front%20view.PNG"}
       />
 
       {/* History */}
       <SectionWrapper>
         <div className="grid gap-16 items-center lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Our Journey</p>
-            <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">A Growing Legacy of Excellence</h2>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">{about.historyTag}</p>
+            <h2 className="text-3xl font-bold text-text md:text-4xl mb-6">{about.historyHeading}</h2>
             <div className="space-y-4 text-text-light leading-relaxed">
-              <p>
-                Located at Best One Road, Salasala, Kinondoni, Dar es Salaam, Brain Yield Schools was
-                founded with a powerful vision: to create a learning institution where every child could
-                discover their unique potential and develop into a confident, responsible leader.
-              </p>
-              <p>
-                From Nursery through Secondary education, we provide comprehensive programs with both
-                day and boarding options. Our modern 4-story campus features spacious classrooms, fully
-                equipped computer labs for digital learning, and well-supervised boarding dormitories.
-              </p>
-              <p>
-                Our commitment to personalized learning has delivered remarkable results. In the PESNO
-                Grade Seven Mock Examination (March 2024), all our students passed across all subjects
-                — Kiswahili, Mathematics, Social Studies, English, Science, and Civic &amp; Moral Education
-                — with high percentages achieving top grades (A and B).
-              </p>
+              {about.historyParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </div>
           <div className="relative">
             <img
-              src="/school%20pics/school%20buildings.PNG"
+              src={about.historyImageUrl || "/school%20pics/school%20buildings.PNG"}
               alt="Brain Yield Schools campus"
               className="rounded-2xl shadow-2xl"
             />
             <div className="absolute -bottom-6 -left-6 rounded-2xl bg-secondary px-8 py-6 text-white shadow-xl">
-              <p className="text-4xl font-bold">100%</p>
-              <p className="text-sm font-medium">Pass Rate — PSLE 2024</p>
+              <p className="text-4xl font-bold">{about.statBadgeNumber}</p>
+              <p className="text-sm font-medium">{about.statBadgeLabel}</p>
             </div>
           </div>
         </div>
@@ -99,22 +84,14 @@ export default async function AboutPage() {
               <Target className="h-7 w-7 text-primary" />
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Mission</h3>
-            <p className="text-text-light leading-relaxed">
-              Every child to develop a curiosity of learning, discover their interests and grow 
-              in love of learning.
-              We also desire to have strong families through parent support / fellowship 
-              and skills training.
-            </p>
+            <p className="text-text-light leading-relaxed">{about.missionText}</p>
           </div>
           <div className="rounded-2xl bg-white p-10 shadow-lg border border-border/50">
             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/10">
               <Eye className="h-7 w-7 text-secondary" />
             </div>
             <h3 className="mb-4 text-2xl font-bold text-text">Our Vision</h3>
-            <p className="text-text-light leading-relaxed">
-              Excellent care to children while fostering each child's
-              intellectual, social, physical and moral development in an academic-rich environment. 
-            </p>
+            <p className="text-text-light leading-relaxed">{about.visionText}</p>
           </div>
         </div>
       </SectionWrapper>
@@ -126,15 +103,18 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold text-text md:text-4xl">Our Core Values</h2>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {values.map((value) => (
-            <div key={value.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform duration-300 group-hover:scale-110">
-                <value.Icon className="h-8 w-8 text-primary" />
+          {values.map((value) => {
+            const Icon = getIcon(value.icon);
+            return (
+              <div key={value.title} className="group rounded-2xl bg-bg p-8 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-text">{value.title}</h3>
+                <p className="text-sm leading-relaxed text-text-light">{value.description}</p>
               </div>
-              <h3 className="mb-3 text-lg font-bold text-text">{value.title}</h3>
-              <p className="text-sm leading-relaxed text-text-light">{value.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </SectionWrapper>
 

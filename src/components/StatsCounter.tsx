@@ -1,19 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-
-interface Stat {
-  value: number;
-  suffix: string;
-  label: string;
-}
-
-const stats: Stat[] = [
-  { value: 100, suffix: "%", label: "PSLE Pass Rate 2024" },
-  { value: 3, suffix: "", label: "Programs: Nursery, Primary, Secondary" },
-  { value: 4, suffix: "-Story", label: "Modern Campus Building" },
-  { value: 2, suffix: "", label: "Options: Day & Boarding" },
-];
+import type { StatItem } from "@/lib/content";
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -55,14 +43,14 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-export default function StatsCounter() {
+export default function StatsCounter({ stats }: { stats: StatItem[] }) {
   return (
     <section className="relative -mt-16 z-10 mx-auto max-w-6xl px-4">
       <div className="grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-2xl md:grid-cols-4 md:p-12">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
             <div className="text-primary">
-              <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+              <AnimatedNumber value={stat.value} suffix={stat.suffix || ""} />
             </div>
             <p className="mt-2 text-sm font-medium text-text-light">{stat.label}</p>
           </div>
