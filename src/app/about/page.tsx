@@ -48,7 +48,7 @@ export default async function AboutPage() {
         title={about.heroTitle}
         subtitle={about.heroSubtitle}
         description={about.heroDescription}
-        bgImage={about.heroImageUrl || "/school%20pics/front%20view.PNG"}
+        bgImage={about.heroImageUrl || "/school%20pics/front%20view.webp"}
       />
 
       {/* History */}
@@ -65,7 +65,7 @@ export default async function AboutPage() {
           </div>
           <div className="relative">
             <img
-              src={about.historyImageUrl || "/school%20pics/school%20buildings.PNG"}
+              src={about.historyImageUrl || "/school%20pics/school%20buildings.webp"}
               alt="Brain Yield Schools campus"
               className="rounded-2xl shadow-2xl"
             />
@@ -129,22 +129,34 @@ export default async function AboutPage() {
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {leaders.map((leader: any) => (
-            <div key={leader.name} className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border/50">
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={leader.image && typeof leader.image === "object" ? urlFor(leader.image).width(400).height(400).url() : leader.image}
-                  alt={leader.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+          {leaders.map((leader: any) => {
+            const photoUrl = leader.image && typeof leader.image === "object"
+              ? urlFor(leader.image).width(400).height(400).url()
+              : leader.image;
+            const initials = leader.name.split(" ").map((w: string) => w[0]).slice(0, 2).join("");
+            return (
+              <div key={leader.name} className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border/50">
+                <div className="relative h-64 overflow-hidden">
+                  {photoUrl ? (
+                    <img
+                      src={photoUrl}
+                      alt={leader.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-primary/10">
+                      <span className="text-4xl font-bold text-primary/40">{initials}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-6 text-center">
+                  <h4 className="text-lg font-bold text-text">{leader.name}</h4>
+                  <p className="mb-3 text-sm font-medium text-secondary">{leader.position}</p>
+                  <p className="text-xs leading-relaxed text-text-light">{leader.bio}</p>
+                </div>
               </div>
-              <div className="p-6 text-center">
-                <h4 className="text-lg font-bold text-text">{leader.name}</h4>
-                <p className="mb-3 text-sm font-medium text-secondary">{leader.position}</p>
-                <p className="text-xs leading-relaxed text-text-light">{leader.bio}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </SectionWrapper>
 

@@ -69,7 +69,7 @@ export default async function AdmissionsPage() {
         title="Admissions"
         subtitle="Now Enrolling — Pre-Primary, Primary & Secondary"
         description={admissions.heroDescription}
-        bgImage="/school%20pics/Main%20gate.PNG"
+        bgImage="/school%20pics/Main%20gate.webp"
       />
 
       {/* Admission Process */}
@@ -109,7 +109,7 @@ export default async function AdmissionsPage() {
             </ul>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-2xl">
-            <img src="/school%20pics/school%20view%209.jpg" alt="Brain Yield Schools campus" className="w-full h-full object-cover" />
+            <img src="/school%20pics/school%20view%209.webp" alt="Brain Yield Schools campus" className="w-full h-full object-cover" />
           </div>
         </div>
       </SectionWrapper>

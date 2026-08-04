@@ -24,7 +24,7 @@ export default async function AcademicsPage() {
         title="Academic Programs"
         subtitle="Nursery to Secondary — Day & Boarding"
         description="Comprehensive, personalized programs designed to nurture intellectual curiosity, build character, and prepare students for national examinations and beyond."
-        bgImage="/school%20pics/school%20view%201.jpg"
+        bgImage="/school%20pics/school%20view%201.webp"
       />
 
       {/* Academic Performance Highlight */}

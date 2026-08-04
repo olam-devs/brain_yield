@@ -23,7 +23,7 @@ export default async function FacilitiesPage() {
         title="Our Facilities"
         subtitle="Modern Campus — Salasala, Dar es Salaam"
         description="A 4-story campus with modern classrooms, computer labs, boarding dormitories, and more — designed for the best learning experience."
-        bgImage="/school%20pics/school%20view%204.jpg"
+        bgImage="/school%20pics/school%20view%204.webp"
       />
 
       <SectionWrapper>

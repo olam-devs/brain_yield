@@ -116,7 +116,7 @@ function buildJsonLd(settings: SiteSettings) {
     alternateName: ["Brain Yield School", "BYS"],
     url: siteUrl,
     logo: `${siteUrl}/official-logo.jpeg`,
-    image: `${siteUrl}/school pics/front view.PNG`,
+    image: `${siteUrl}/school pics/front view.webp`,
     description:
       "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
     address: {

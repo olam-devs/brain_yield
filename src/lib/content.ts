@@ -247,10 +247,10 @@ const defaultAdmissionsPage: AdmissionsPageContent = {
 };
 
 const defaultHeroSlides: HeroSlide[] = [
-  { imageUrl: "/school%20pics/school%20view%201.jpg", heading: "Together We Make The Difference With Excellence", subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam" },
-  { imageUrl: "/school%20pics/pre%20primary%20in%20assembly.PNG", heading: "Nurturing Confident, Responsible Leaders", subheading: "Personalized learning with both day and boarding options for every family" },
-  { imageUrl: "/school%20pics/school%20view%202.jpg", heading: "100% Pass Rate — PSLE 2024", subheading: "Proven academic excellence with top grades across all subjects" },
-  { imageUrl: "/school%20pics/school%20view%203.jpg", heading: "Modern Facilities, Holistic Development", subheading: "4-story campus with computer labs, boarding dormitories, and a school garden" },
+  { imageUrl: "/school%20pics/school%20view%201.webp", heading: "Together We Make The Difference With Excellence", subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam" },
+  { imageUrl: "/school%20pics/pre%20primary%20in%20assembly.webp", heading: "Nurturing Confident, Responsible Leaders", subheading: "Personalized learning with both day and boarding options for every family" },
+  { imageUrl: "/school%20pics/school%20view%202.webp", heading: "100% Pass Rate — PSLE 2024", subheading: "Proven academic excellence with top grades across all subjects" },
+  { imageUrl: "/school%20pics/school%20view%203.webp", heading: "Modern Facilities, Holistic Development", subheading: "4-story campus with computer labs, boarding dormitories, and a school garden" },
 ];
 
 const defaultPrograms: Program[] = [
@@ -262,7 +262,7 @@ const defaultPrograms: Program[] = [
     homeSummary: "Early childhood education for ages 3–5, focusing on literacy, numeracy, communication skills, and social development in a safe and nurturing environment. Available as Day and Boarding.",
     curriculum: ["Early literacy and reading readiness", "Numeracy and number awareness", "Communication and language skills", "Social and emotional development", "Creative arts, music, and movement", "Physical development and motor skills", "Kiswahili and English foundations", "Environmental and nature awareness"],
     optionText: "Day & Boarding options available",
-    imageUrl: "/school%20pics/IMG_6191.jpg",
+    imageUrl: "/school%20pics/IMG_6191.webp",
     showOnHome: true,
   },
   {
@@ -273,7 +273,7 @@ const defaultPrograms: Program[] = [
     homeSummary: "Standards 1–7 following the Tanzanian National Curriculum. Strong foundation in English, Kiswahili, Mathematics, Science & Technology, Social Studies, and ICT — with preparation for the PSLE. Day and Boarding available.",
     curriculum: ["English Language", "Kiswahili Language", "Mathematics", "Science and Technology", "Social Studies", "Civic and Moral Education", "ICT and Computer Studies", "Creative and Cultural Arts"],
     optionText: "Day & Boarding options available",
-    imageUrl: "/school%20pics/school%20view%207.jpg",
+    imageUrl: "/school%20pics/school%20view%207.webp",
     showOnHome: true,
   },
   {
@@ -284,18 +284,18 @@ const defaultPrograms: Program[] = [
     homeSummary: "Forms 1–4 following the National O-Level Curriculum. Qualified and experienced teachers, Science and Arts subject combinations, and thorough preparation for the CSEE. Day and Boarding available.",
     curriculum: ["Kiswahili and English Language", "Mathematics", "Physics, Chemistry, and Biology", "History and Geography", "Civics and General Studies", "Computer Science and ICT", "Commerce and Book Keeping", "Career Guidance and Counseling"],
     optionText: "Day & Boarding options available",
-    imageUrl: "/school%20pics/school%20view%208.jpg",
+    imageUrl: "/school%20pics/school%20view%208.webp",
     showOnHome: true,
   },
 ];
 
 const defaultFacilities: Facility[] = [
-  { title: "4-Story Campus Building", description: "Our impressive 4-story building houses spacious, well-ventilated classrooms equipped with modern teaching aids and comfortable furniture designed for optimal learning.", imageUrl: "/school%20pics/IMG_6061.jpg" },
-  { title: "Computer Laboratory", description: "Fully equipped computer lab for digital learning, providing students with hands-on experience in ICT, programming, and research from an early age.", imageUrl: "/school%20pics/IMG_6381.jpg" },
-  { title: "Boarding Dormitories", description: "Well-supervised boarding dormitories with proper facilities and care, providing a safe and comfortable home-away-from-home for boarding students.", imageUrl: "/school%20pics/IMG_6354.jpg" },
-  { title: "Science Laboratory", description: "Equipped science lab for hands-on experimental learning in physics, chemistry, and biology, bringing scientific concepts to life.", imageUrl: "/school%20pics/IMG_6300.jpg" },
-  { title: "Library & Resource Center", description: "A growing library with textbooks, reference materials, and reading resources to support academic research and cultivate a love for reading.", imageUrl: "/school%20pics/IMG_6262.jpg" },
-  { title: "School Garden", description: "Our School Garden Project fosters environmental awareness and teamwork, giving students hands-on experience in sustainability and agriculture.", imageUrl: "/school%20pics/IMG_6092.jpg" },
+  { title: "4-Story Campus Building", description: "Our impressive 4-story building houses spacious, well-ventilated classrooms equipped with modern teaching aids and comfortable furniture designed for optimal learning.", imageUrl: "/school%20pics/IMG_6061.webp" },
+  { title: "Computer Laboratory", description: "Fully equipped computer lab for digital learning, providing students with hands-on experience in ICT, programming, and research from an early age.", imageUrl: "/school%20pics/IMG_6381.webp" },
+  { title: "Boarding Dormitories", description: "Well-supervised boarding dormitories with proper facilities and care, providing a safe and comfortable home-away-from-home for boarding students.", imageUrl: "/school%20pics/IMG_6354.webp" },
+  { title: "Science Laboratory", description: "Equipped science lab for hands-on experimental learning in physics, chemistry, and biology, bringing scientific concepts to life.", imageUrl: "/school%20pics/IMG_6300.webp" },
+  { title: "Library & Resource Center", description: "A growing library with textbooks, reference materials, and reading resources to support academic research and cultivate a love for reading.", imageUrl: "/school%20pics/IMG_6262.webp" },
+  { title: "School Garden", description: "Our School Garden Project fosters environmental awareness and teamwork, giving students hands-on experience in sustainability and agriculture.", imageUrl: "/school%20pics/IMG_6092.webp" },
 ];
 
 const defaultFeatures: IconItem[] = [
