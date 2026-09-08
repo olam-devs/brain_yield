@@ -26,6 +26,7 @@ const structure: StructureResolver = (S) =>
       S.documentTypeListItem("leadershipTeam").title("Leadership Team"),
       S.divider(),
       S.documentTypeListItem("news").title("News & Events"),
+      S.documentTypeListItem("announcement").title("Announcements"),
       S.documentTypeListItem("galleryImage").title("Gallery"),
       S.documentTypeListItem("testimonial").title("Testimonials"),
       S.documentTypeListItem("faq").title("FAQs"),

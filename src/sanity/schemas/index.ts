@@ -10,6 +10,7 @@ import featureItem from "./featureItem";
 import activityItem from "./activityItem";
 import coreValue from "./coreValue";
 import faq from "./faq";
+import announcement from "./announcement";
 
 const gallerySchema = defineType({
   name: "galleryImage",
@@ -121,6 +122,7 @@ const schemas = [
   newsSchema,
   applicationFormSchema,
   leadershipSchema,
+  announcement,
 ];
 export default schemas;
 

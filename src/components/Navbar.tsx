@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { Facebook, Instagram, Youtube, Phone, Mail, MapPin } from "lucide-react";
 import type { SiteSettings } from "@/lib/content";
 
 const programLinks = [
@@ -83,11 +84,57 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
-        scrolled ? "shadow-lg" : "shadow-sm"
-      }`}
-    >
+    <div className="fixed top-0 left-0 right-0 z-50">
+      {/* Top contact bar */}
+      <div
+        className={`hidden md:block bg-primary text-white overflow-hidden transition-all duration-300 ${
+          scrolled ? "max-h-0" : "max-h-12"
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-between text-xs">
+          <div className="flex items-center gap-5 text-white/90">
+            {settings?.address && (
+              <span className="flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5 shrink-0" />
+                {settings.address}, {settings.addressLocality}
+              </span>
+            )}
+            {settings?.email && (
+              <a href={`mailto:${settings.email}`} className="hidden lg:flex items-center gap-1.5 hover:text-accent transition-colors">
+                <Mail className="h-3.5 w-3.5 shrink-0" />
+                {settings.email}
+              </a>
+            )}
+          </div>
+          <div className="flex items-center gap-4">
+            {settings?.phones?.[0] && (
+              <a href={`tel:${settings.phones[0].number.replace(/\s+/g, "")}`} className="flex items-center gap-1.5 hover:text-accent transition-colors">
+                <Phone className="h-3.5 w-3.5 shrink-0" />
+                {settings.phones[0].number}
+              </a>
+            )}
+            <div className="flex items-center gap-3 border-l border-white/20 pl-4">
+              {settings?.facebookUrl && (
+                <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-accent transition-colors">
+                  <Facebook className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {settings?.instagramUrl && (
+                <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-accent transition-colors">
+                  <Instagram className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {settings?.youtubeUrl && (
+                <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-accent transition-colors">
+                  <Youtube className="h-3.5 w-3.5" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav className={`bg-white transition-all duration-300 ${scrolled ? "shadow-lg" : "shadow-sm"}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
@@ -250,6 +297,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
           </Link>
         </div>
       </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

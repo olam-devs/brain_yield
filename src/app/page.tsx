@@ -13,6 +13,7 @@ import {
   getPrograms,
   getFeatureItems,
   getActivityItems,
+  getEvents,
 } from "@/lib/content";
 import { client, urlFor } from "@/lib/sanity";
 
@@ -62,7 +63,7 @@ async function getHomeNews() {
 }
 
 export default async function Home() {
-  const [settings, home, slides, allPrograms, features, activities, testimonials, news] = await Promise.all([
+  const [settings, home, slides, allPrograms, features, activities, testimonials, news, events] = await Promise.all([
     getSiteSettings(),
     getHomePageContent(),
     getHeroSlides(),
@@ -71,6 +72,7 @@ export default async function Home() {
     getActivityItems(),
     getHomeTestimonials(),
     getHomeNews(),
+    getEvents(),
   ]);
 
   const programs = allPrograms.filter((p) => p.showOnHome).slice(0, 3);
@@ -173,6 +175,22 @@ export default async function Home() {
               </div>
             );
           })}
+        </div>
+      </SectionWrapper>
+
+      {/* Events & Activities */}
+      <SectionWrapper>
+        <div className="text-center mb-16">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">Events & Activities</p>
+          <h2 className="text-3xl font-bold text-text md:text-4xl">Upcoming & Past School Events</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-text-light">
+            Stay updated with our vibrant campus life, academic competitions, sports days, and special celebrations.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-3">
+          {events.map((event) => (
+            <NewsCard key={event.title} title={event.title} excerpt={event.excerpt} date={event.date} category="Event" image={event.imageUrl} />
+          ))}
         </div>
       </SectionWrapper>
 

@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getSiteSettings } from "@/lib/content";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import { getSiteSettings, getAnnouncements } from "@/lib/content";
 
 export const revalidate = 3600;
 
-const inter = Inter({
+const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
   variable: "--font-inter",
 });
 
@@ -166,11 +168,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
+  const [settings, announcements] = await Promise.all([getSiteSettings(), getAnnouncements()]);
   const jsonLd = buildJsonLd(settings);
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={roboto.variable}>
       <head>
         <script
           type="application/ld+json"
@@ -181,6 +183,7 @@ export default async function RootLayout({
         <Navbar settings={settings} />
         <main>{children}</main>
         <Footer settings={settings} />
+        <AnnouncementBar announcements={announcements} />
       </body>
     </html>
   );

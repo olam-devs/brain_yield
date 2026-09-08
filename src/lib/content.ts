@@ -523,3 +523,71 @@ export async function getFaqs(page: string): Promise<Faq[]> {
     return defaultFaqs.filter((f) => f.page === page);
   }
 }
+
+/* ---------------------------------------------------------------------- */
+/* Events (reuses the "news" schema, filtered to category == "Events")    */
+/* ---------------------------------------------------------------------- */
+
+export interface EventItem {
+  title: string;
+  excerpt: string;
+  imageUrl: string;
+  date: string;
+}
+
+const defaultEvents: EventItem[] = [
+  { title: "Sports Day & Cultural Celebration", excerpt: "Students celebrated diversity and sportsmanship through athletics, team sports, traditional dance, and cultural exhibitions.", imageUrl: "/school%20pics/ref-event%201.webp", date: "November 2025" },
+  { title: "Kindergarten Graduation Ceremony", excerpt: "Our youngest learners celebrated the end of their pre-primary journey with a joyful graduation ceremony attended by proud parents.", imageUrl: "/school%20pics/ref-event%202.webp", date: "December 2025" },
+  { title: "Parent-Teacher Conference", excerpt: "Parents and educators came together to discuss student progress and plans for the academic year ahead.", imageUrl: "/school%20pics/ref-event%203.webp", date: "December 2025" },
+];
+
+export async function getEvents(): Promise<EventItem[]> {
+  try {
+    const results = await client.fetch(
+      `*[_type == "news" && category == "Events"] | order(publishedAt desc)[0...4] { title, excerpt, image, publishedAt }`
+    );
+    if (!results?.length) return defaultEvents;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return results.map((e: any) => ({
+      title: e.title,
+      excerpt: e.excerpt || "",
+      imageUrl: img(e.image, 800) || defaultEvents[0].imageUrl,
+      date: e.publishedAt
+        ? new Date(e.publishedAt).toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+        : "",
+    }));
+  } catch {
+    return defaultEvents;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Announcements                                                          */
+/* ---------------------------------------------------------------------- */
+
+export interface Announcement {
+  title: string;
+  body: string;
+  category: string;
+  publishedAt: string;
+}
+
+const defaultAnnouncements: Announcement[] = [
+  {
+    title: "Form One Admissions 2027 Now Open",
+    body: "Brain Yield Schools is pleased to announce that applications for Form One admission for the 2027 academic year are now open. Application forms are available at the school — parents and guardians are warmly invited to visit and secure an application form for their child.",
+    category: "General Notice",
+    publishedAt: "2026-09-03",
+  },
+];
+
+export async function getAnnouncements(): Promise<Announcement[]> {
+  try {
+    const results = await client.fetch(
+      `*[_type == "announcement" && active == true] | order(publishedAt desc) { title, body, category, publishedAt }`
+    );
+    return results?.length ? results : defaultAnnouncements;
+  } catch {
+    return defaultAnnouncements;
+  }
+}
