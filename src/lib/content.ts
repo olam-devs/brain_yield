@@ -568,6 +568,7 @@ export async function getEvents(): Promise<EventItem[]> {
 /* ---------------------------------------------------------------------- */
 
 export interface Announcement {
+  _id: string;
   title: string;
   body: string;
   category: string;
@@ -576,6 +577,7 @@ export interface Announcement {
 
 const defaultAnnouncements: Announcement[] = [
   {
+    _id: "default-announcement-1",
     title: "Form One Admissions 2027 Now Open",
     body: "Brain Yield Schools is pleased to announce that applications for Form One admission for the 2027 academic year are now open. Application forms are available at the school — parents and guardians are warmly invited to visit and secure an application form for their child.",
     category: "General Notice",
@@ -586,7 +588,7 @@ const defaultAnnouncements: Announcement[] = [
 export async function getAnnouncements(): Promise<Announcement[]> {
   try {
     const results = await client.fetch(
-      `*[_type == "announcement" && active == true] | order(publishedAt desc) { title, body, category, publishedAt }`
+      `*[_type == "announcement" && active == true] | order(publishedAt desc) { _id, title, body, category, publishedAt }`
     );
     return results?.length ? results : defaultAnnouncements;
   } catch {

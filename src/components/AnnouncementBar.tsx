@@ -1,15 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Megaphone, X } from "lucide-react";
 import type { Announcement } from "@/lib/content";
+
+const SEEN_KEY = "brainyield-seen-announcement";
 
 export default function AnnouncementBar({ announcements }: { announcements: Announcement[] }) {
   const [dismissed, setDismissed] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
-  if (!announcements.length || dismissed) return null;
   const latest = announcements[0];
+
+  // Auto-open the modal the first time a visitor sees THIS announcement this
+  // session — closing it (or reading it) marks it seen, so it won't pop up
+  // again until a newer announcement is published.
+  useEffect(() => {
+    if (!latest) return;
+    try {
+      const seen = sessionStorage.getItem(SEEN_KEY);
+      if (seen !== latest._id) {
+        const timer = setTimeout(() => setShowAll(true), 600);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      // sessionStorage unavailable (private browsing, etc.) — skip auto-open
+    }
+  }, [latest]);
+
+  const markSeen = () => {
+    try {
+      if (latest) sessionStorage.setItem(SEEN_KEY, latest._id);
+    } catch {
+      // ignore
+    }
+  };
+
+  if (!announcements.length || dismissed) return null;
 
   return (
     <>
@@ -27,7 +54,10 @@ export default function AnnouncementBar({ announcements }: { announcements: Anno
             Read All ({announcements.length})
           </button>
           <button
-            onClick={() => setDismissed(true)}
+            onClick={() => {
+              markSeen();
+              setDismissed(true);
+            }}
             aria-label="Dismiss announcement"
             className="shrink-0 rounded-full p-1.5 text-white/70 transition-colors hover:bg-white/15 hover:text-white"
           >
@@ -39,7 +69,10 @@ export default function AnnouncementBar({ announcements }: { announcements: Anno
       {showAll && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4"
-          onClick={() => setShowAll(false)}
+          onClick={() => {
+            markSeen();
+            setShowAll(false);
+          }}
         >
           <div
             className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl"
@@ -50,13 +83,20 @@ export default function AnnouncementBar({ announcements }: { announcements: Anno
                 <Megaphone className="h-5 w-5" />
                 School Announcements
               </h3>
-              <button onClick={() => setShowAll(false)} aria-label="Close" className="rounded-full p-1 hover:bg-white/15">
+              <button
+                onClick={() => {
+                  markSeen();
+                  setShowAll(false);
+                }}
+                aria-label="Close"
+                className="rounded-full p-1 hover:bg-white/15"
+              >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="divide-y divide-border">
-              {announcements.map((a, i) => (
-                <div key={i} className="p-6">
+              {announcements.map((a) => (
+                <div key={a._id} className="p-6">
                   <div className="mb-2 flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-secondary/15 px-3 py-1 text-xs font-semibold text-secondary-dark">
                       {a.category || "Notice"}
