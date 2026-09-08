@@ -94,6 +94,7 @@ export interface AdmissionsPageContent {
 }
 
 export interface HeroSlide {
+  eyebrow: string;
   heading: string;
   subheading: string;
   imageUrl: string;
@@ -247,10 +248,10 @@ const defaultAdmissionsPage: AdmissionsPageContent = {
 };
 
 const defaultHeroSlides: HeroSlide[] = [
-  { imageUrl: "/school%20pics/school%20view%201.webp", heading: "Together We Make The Difference With Excellence", subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam" },
-  { imageUrl: "/school%20pics/pre%20primary%20in%20assembly.webp", heading: "Nurturing Confident, Responsible Leaders", subheading: "Personalized learning with both day and boarding options for every family" },
-  { imageUrl: "/school%20pics/school%20view%202.webp", heading: "100% Pass Rate — PSLE 2024", subheading: "Proven academic excellence with top grades across all subjects" },
-  { imageUrl: "/school%20pics/school%20view%203.webp", heading: "Modern Facilities, Holistic Development", subheading: "4-story campus with computer labs, boarding dormitories, and a school garden" },
+  { eyebrow: "Quality & Discipline", imageUrl: "/school%20pics/school%20view%201.webp", heading: "Together We Make The Difference With Excellence", subheading: "Quality education from Nursery to Secondary at Salasala, Dar es Salaam" },
+  { eyebrow: "Nurturing Young Minds", imageUrl: "/school%20pics/pre%20primary%20in%20assembly.webp", heading: "Nurturing Confident, Responsible Leaders", subheading: "Personalized learning with both day and boarding options for every family" },
+  { eyebrow: "Excellence In Education", imageUrl: "/school%20pics/school%20view%202.webp", heading: "100% Pass Rate — PSLE 2024", subheading: "Proven academic excellence with top grades across all subjects" },
+  { eyebrow: "Modern Learning Facilities", imageUrl: "/school%20pics/school%20view%203.webp", heading: "Modern Facilities, Holistic Development", subheading: "4-story campus with computer labs, boarding dormitories, and a school garden" },
 ];
 
 const defaultPrograms: Program[] = [
@@ -443,11 +444,12 @@ export async function getAdmissionsPageContent(): Promise<AdmissionsPageContent>
 export async function getHeroSlides(): Promise<HeroSlide[]> {
   try {
     const results = await client.fetch(
-      `*[_type == "heroSlide"] | order(order asc) { heading, subheading, image }`
+      `*[_type == "heroSlide"] | order(order asc) { eyebrow, heading, subheading, image }`
     );
     if (!results?.length) return defaultHeroSlides;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return results.map((s: any) => ({
+      eyebrow: s.eyebrow || "",
       heading: s.heading,
       subheading: s.subheading || "",
       imageUrl: img(s.image, 1600) || defaultHeroSlides[0].imageUrl,

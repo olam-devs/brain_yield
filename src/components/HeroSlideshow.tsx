@@ -2,7 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { BookOpen, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { HeroSlide } from "@/lib/content";
+
+function splitHeading(heading: string) {
+  const words = heading.trim().split(" ");
+  if (words.length < 2) return { rest: heading, last: "" };
+  return { rest: words.slice(0, -1).join(" "), last: words[words.length - 1] };
+}
 
 export default function HeroSlideshow({ slides, tagline }: { slides: HeroSlide[]; tagline?: string }) {
   const [current, setCurrent] = useState(0);
@@ -10,91 +17,104 @@ export default function HeroSlideshow({ slides, tagline }: { slides: HeroSlide[]
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
+
+  const goTo = (delta: number) => {
+    setCurrent((prev) => (prev + delta + slides.length) % slides.length);
+  };
+
+  const slide = slides[current];
+  const { rest, last } = splitHeading(slide.heading);
 
   return (
-    <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+    <section className="relative h-[85vh] min-h-[600px] overflow-hidden" aria-label={tagline}>
       {/* Slides */}
-      {slides.map((slide, index) => (
+      {slides.map((s, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${
             index === current ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
-          <img
-            src={slide.imageUrl}
-            alt={slide.heading}
-            className="h-full w-full object-cover"
+          <img src={s.imageUrl} alt={s.heading} className="h-full w-full object-cover" />
+          {/* Left-to-right gradient so left-aligned text stays readable while the photo shows through on the right */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(10,10,20,0.75) 0%, rgba(10,10,20,0.45) 45%, rgba(10,10,20,0.15) 70%, rgba(10,10,20,0.05) 100%)",
+            }}
           />
-          {/* Dark overlay with school colors */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-primary-dark/70" />
         </div>
       ))}
 
-      {/* Content */}
-      <div className="relative z-20 flex h-full items-center justify-center">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-20 md:pt-28">
-          <p className="mb-4 inline-block rounded-full bg-secondary/30 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm border border-secondary/30">
-            {tagline || "Welcome to Brain Yield Schools — Salasala, Kinondoni, Dar es Salaam"}
-          </p>
-          <h1
-            key={current}
-            className="mx-auto max-w-5xl text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl animate-fade-in-up"
-          >
-            {slides[current].heading}
-          </h1>
-          <p
-            key={`sub-${current}`}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl animate-fade-in-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            {slides[current].subheading}
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/admissions"
-              className="inline-flex items-center rounded-full bg-secondary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-secondary-light hover:shadow-xl hover:-translate-y-1"
+      {/* Content — left-aligned, constrained width */}
+      <div className="relative z-20 flex h-full items-center">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
+          <div className="max-w-2xl">
+            <p
+              key={`eyebrow-${current}`}
+              className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-secondary animate-fade-in-up"
             >
-              Apply Now
-              <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center rounded-full border-2 border-white/40 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/60"
+              <BookOpen className="h-4 w-4" />
+              {slide.eyebrow || tagline}
+            </p>
+            <h1
+              key={current}
+              className="text-4xl font-extrabold capitalize leading-tight text-white md:text-5xl lg:text-[54px] animate-fade-in-up"
             >
-              Learn More
-            </Link>
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="mt-12 flex justify-center gap-3">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  index === current
-                    ? "w-10 bg-secondary"
-                    : "w-2.5 bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="mt-8 animate-bounce">
-            <svg className="mx-auto h-7 w-7 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+              {rest} {last && <span className="text-secondary">{last}</span>}
+            </h1>
+            <p
+              key={`sub-${current}`}
+              className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 animate-fade-in-up"
+              style={{ animationDelay: "0.15s" }}
+            >
+              {slide.subheading}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 bg-secondary px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-secondary-dark hover:shadow-xl"
+                style={{ borderRadius: "50px 50px 50px 0px" }}
+              >
+                About Us
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/admissions"
+                className="inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-text shadow-lg transition-all duration-300 hover:bg-white/90"
+                style={{ borderRadius: "50px 50px 50px 0px" }}
+              >
+                Apply Now
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Prev / Next arrows */}
+      {slides.length > 1 && (
+        <>
+          <button
+            onClick={() => goTo(-1)}
+            aria-label="Previous slide"
+            className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 text-white backdrop-blur-sm transition-colors hover:bg-white/15 md:left-8"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => goTo(1)}
+            aria-label="Next slide"
+            className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 text-white backdrop-blur-sm transition-colors hover:bg-white/15 md:right-8"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </>
+      )}
     </section>
   );
 }
