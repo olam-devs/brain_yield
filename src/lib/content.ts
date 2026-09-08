@@ -109,6 +109,7 @@ export interface Program {
   curriculum: string[];
   optionText: string;
   imageUrl: string;
+  images: string[];
   showOnHome: boolean;
 }
 
@@ -264,6 +265,13 @@ const defaultPrograms: Program[] = [
     curriculum: ["Early literacy and reading readiness", "Numeracy and number awareness", "Communication and language skills", "Social and emotional development", "Creative arts, music, and movement", "Physical development and motor skills", "Kiswahili and English foundations", "Environmental and nature awareness"],
     optionText: "Day & Boarding options available",
     imageUrl: "/school%20pics/by-nursery-play.webp",
+    images: [
+      "/school%20pics/by-nursery-play.webp",
+      "/school%20pics/by-gallery-campus-01.webp",
+      "/school%20pics/by-gallery-campus-02.webp",
+      "/school%20pics/by-gallery-academics-01.webp",
+      "/school%20pics/by-gallery-life-01.webp",
+    ],
     showOnHome: true,
   },
   {
@@ -275,6 +283,13 @@ const defaultPrograms: Program[] = [
     curriculum: ["English Language", "Kiswahili Language", "Mathematics", "Science and Technology", "Social Studies", "Civic and Moral Education", "ICT and Computer Studies", "Creative and Cultural Arts"],
     optionText: "Day & Boarding options available",
     imageUrl: "/school%20pics/by-primary-class.webp",
+    images: [
+      "/school%20pics/by-primary-class.webp",
+      "/school%20pics/by-gallery-academics-03.webp",
+      "/school%20pics/by-gallery-academics-04.webp",
+      "/school%20pics/by-gallery-academics-05.webp",
+      "/school%20pics/by-gallery-academics-06.webp",
+    ],
     showOnHome: true,
   },
   {
@@ -286,6 +301,13 @@ const defaultPrograms: Program[] = [
     curriculum: ["Kiswahili and English Language", "Mathematics", "Physics, Chemistry, and Biology", "History and Geography", "Civics and General Studies", "Computer Science and ICT", "Commerce and Book Keeping", "Career Guidance and Counseling"],
     optionText: "Day & Boarding options available",
     imageUrl: "/school%20pics/by-secondary-lab.webp",
+    images: [
+      "/school%20pics/by-secondary-lab.webp",
+      "/school%20pics/by-secondary-01.webp",
+      "/school%20pics/by-secondary-04.webp",
+      "/school%20pics/by-gallery-academics-09.webp",
+      "/school%20pics/by-sports-football-1.webp",
+    ],
     showOnHome: true,
   },
 ];
@@ -462,21 +484,27 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
 export async function getPrograms(): Promise<Program[]> {
   try {
     const results = await client.fetch(
-      `*[_type == "program"] | order(order asc) { title, "slug": slug.current, subtitle, description, homeSummary, curriculum, optionText, image, showOnHome }`
+      `*[_type == "program"] | order(order asc) { title, "slug": slug.current, subtitle, description, homeSummary, curriculum, optionText, image, gallery, showOnHome }`
     );
     if (!results?.length) return defaultPrograms;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return results.map((p: any) => ({
-      title: p.title,
-      slug: p.slug || p.title.toLowerCase(),
-      subtitle: p.subtitle || "",
-      description: p.description || "",
-      homeSummary: p.homeSummary || p.description || "",
-      curriculum: p.curriculum || [],
-      optionText: p.optionText || "Day & Boarding options available",
-      imageUrl: img(p.image, 900) || defaultPrograms[0].imageUrl,
-      showOnHome: p.showOnHome !== false,
-    }));
+    return results.map((p: any) => {
+      const coverUrl = img(p.image, 900) || defaultPrograms[0].imageUrl;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const galleryUrls = (p.gallery || []).map((g: any) => img(g, 900)).filter(Boolean) as string[];
+      return {
+        title: p.title,
+        slug: p.slug || p.title.toLowerCase(),
+        subtitle: p.subtitle || "",
+        description: p.description || "",
+        homeSummary: p.homeSummary || p.description || "",
+        curriculum: p.curriculum || [],
+        optionText: p.optionText || "Day & Boarding options available",
+        imageUrl: coverUrl,
+        images: galleryUrls.length > 0 ? galleryUrls : [coverUrl],
+        showOnHome: p.showOnHome !== false,
+      };
+    });
   } catch {
     return defaultPrograms;
   }

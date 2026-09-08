@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTABanner from "@/components/CTABanner";
+import ProgramSlideshow from "@/components/ProgramSlideshow";
 import { getPrograms, getSiteSettings } from "@/lib/content";
 
 export const revalidate = 3600;
@@ -69,14 +70,7 @@ export default async function AcademicsPage() {
               </Link>
             </div>
             <div className={index % 2 !== 0 ? "lg:order-1" : ""}>
-              <div className="relative">
-                <img
-                  src={program.imageUrl}
-                  alt={program.title}
-                  className="rounded-2xl shadow-2xl"
-                />
-                <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-secondary/30 -z-10" />
-              </div>
+              <ProgramSlideshow images={program.images} alt={program.title} />
             </div>
           </div>
         </SectionWrapper>
