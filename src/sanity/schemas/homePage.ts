@@ -6,6 +6,7 @@ export default defineType({
   type: "document",
   groups: [
     { name: "welcome", title: "Welcome Section" },
+    { name: "video", title: "Welcome Video" },
     { name: "cta", title: "Call To Action Banner" },
   ],
   fields: [
@@ -13,6 +14,11 @@ export default defineType({
     defineField({ name: "welcomeHeading", title: "Heading", type: "string", group: "welcome", initialValue: "Welcome to Brain Yield Schools" }),
     defineField({ name: "welcomeParagraph1", title: "Paragraph 1", type: "text", group: "welcome" }),
     defineField({ name: "welcomeParagraph2", title: "Paragraph 2", type: "text", group: "welcome" }),
+
+    defineField({ name: "videoHeading", title: "Heading", type: "string", group: "video", initialValue: "A Message From Our Head of School" }),
+    defineField({ name: "videoDescription", title: "Description", type: "text", group: "video" }),
+    defineField({ name: "video", title: "Video File", description: "MP4 file. Leave blank to hide this section.", type: "file", options: { accept: "video/mp4" }, group: "video" }),
+    defineField({ name: "videoPoster", title: "Poster / Thumbnail Image", description: "Shown before the video is played.", type: "image", group: "video" }),
 
     defineField({ name: "ctaHeading", title: "Heading", type: "string", group: "cta", initialValue: "Ready to Give Your Child the Best Education?" }),
     defineField({ name: "ctaDescription", title: "Description", type: "text", group: "cta" }),

@@ -49,6 +49,10 @@ export interface HomePageContent {
   welcomeHeading: string;
   welcomeParagraph1: string;
   welcomeParagraph2: string;
+  videoHeading: string;
+  videoDescription: string;
+  videoUrl: string | null;
+  videoPosterUrl: string | null;
   ctaHeading: string;
   ctaDescription: string;
   ctaImageUrl: string | null;
@@ -182,6 +186,10 @@ const defaultHomePage: HomePageContent = {
     "Brain Yield Schools is a leading private educational institution located at Salasala, Kinondoni – Dar es Salaam, Tanzania. We offer quality education from Pre-Primary, Primary to Secondary levels, providing both Day and Boarding options.",
   welcomeParagraph2:
     "Our commitment is to nurture academic excellence, strong character, creativity, and leadership skills in every learner.",
+  videoHeading: "A Message From Our Head of School",
+  videoDescription: "Hear directly from our Head of School about what makes Brain Yield Schools special — our values, our programs, and our commitment to every learner.",
+  videoUrl: null,
+  videoPosterUrl: null,
   ctaHeading: "Ready to Give Your Child the Best Education?",
   ctaDescription:
     "Join the Brain Yield family and watch your child thrive in a nurturing, innovative, and excellence-driven environment. Day & Boarding available.",
@@ -404,13 +412,19 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 export async function getHomePageContent(): Promise<HomePageContent> {
   try {
-    const doc = await client.fetch(`*[_type == "homePage"][0]`);
+    const doc = await client.fetch(
+      `*[_type == "homePage"][0]{..., "videoFileUrl": video.asset->url}`
+    );
     if (!doc) return defaultHomePage;
     return {
       welcomeTag: doc.welcomeTag || defaultHomePage.welcomeTag,
       welcomeHeading: doc.welcomeHeading || defaultHomePage.welcomeHeading,
       welcomeParagraph1: doc.welcomeParagraph1 || defaultHomePage.welcomeParagraph1,
       welcomeParagraph2: doc.welcomeParagraph2 || defaultHomePage.welcomeParagraph2,
+      videoHeading: doc.videoHeading || defaultHomePage.videoHeading,
+      videoDescription: doc.videoDescription || defaultHomePage.videoDescription,
+      videoUrl: doc.videoFileUrl || defaultHomePage.videoUrl,
+      videoPosterUrl: img(doc.videoPoster, 1600) || defaultHomePage.videoPosterUrl,
       ctaHeading: doc.ctaHeading || defaultHomePage.ctaHeading,
       ctaDescription: doc.ctaDescription || defaultHomePage.ctaDescription,
       ctaImageUrl: img(doc.ctaImage, 1400),

@@ -2,6 +2,7 @@ import Link from "next/link";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import StatsCounter from "@/components/StatsCounter";
 import SectionWrapper from "@/components/SectionWrapper";
+import HomeVideoSection from "@/components/HomeVideoSection";
 import TestimonialCard from "@/components/TestimonialCard";
 import NewsCard from "@/components/NewsCard";
 import CTABanner from "@/components/CTABanner";
@@ -94,6 +95,18 @@ export default async function Home() {
           <p className="text-text-light leading-relaxed">{home.welcomeParagraph2}</p>
         </div>
       </SectionWrapper>
+
+      {/* Welcome Video */}
+      {home.videoUrl && (
+        <SectionWrapper>
+          <HomeVideoSection
+            heading={home.videoHeading}
+            description={home.videoDescription}
+            videoUrl={home.videoUrl}
+            posterUrl={home.videoPosterUrl}
+          />
+        </SectionWrapper>
+      )}
 
       {/* Featured Programs */}
       <SectionWrapper>
