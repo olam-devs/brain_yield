@@ -35,7 +35,7 @@ export default function HeroSection({
       {/* Overlay with school colors */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/80 via-primary/70 to-primary-dark/85" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
+      <div className="relative z-10 mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 text-center w-full">
         {subtitle && (
           <p className="mb-4 inline-block rounded-full bg-secondary/25 px-6 py-2 text-sm font-medium text-secondary-light backdrop-blur-sm border border-secondary/20">
             {subtitle}

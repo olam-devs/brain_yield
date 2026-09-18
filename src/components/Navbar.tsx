@@ -93,7 +93,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
           scrolled ? "max-h-0" : "max-h-12"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-between text-xs">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-between text-xs">
           <div className="flex items-center gap-5 text-white/90">
             {settings?.address && (
               <span className="flex items-center gap-1.5">
@@ -137,7 +137,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
       </div>
 
       <nav className={`bg-white transition-all duration-300 ${scrolled ? "shadow-lg" : "shadow-sm"}`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
@@ -150,7 +150,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
               priority
               unoptimized={logoUrl.startsWith("http")}
             />
-            <div className="hidden sm:block">
+            <div className="hidden sm:block whitespace-nowrap">
               <span className="text-xl font-bold tracking-tight text-primary">
                 {nameFirst}
               </span>
@@ -163,7 +163,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-0.5">
+          <div className="hidden xl:flex items-center gap-0.5 shrink-0">
             {navLinks.map((link) => (
               <div
                 key={link.href}
@@ -173,7 +173,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
               >
                 <Link
                   href={link.href}
-                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-text transition-all duration-200 hover:bg-secondary/10 hover:text-primary"
+                  className="flex items-center gap-1 whitespace-nowrap px-2.5 py-2 rounded-lg text-sm font-medium text-text transition-all duration-200 hover:bg-secondary/10 hover:text-primary"
                 >
                   {link.label}
                   {link.dropdown && (
@@ -202,14 +202,14 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
               href={PARENT_PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-4 flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-primary px-5 py-2 text-sm font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
+              className="ml-3 flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-primary px-4 py-2 text-sm font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
             >
               <LogIn className="h-4 w-4" />
               Parent Portal
             </a>
             <Link
               href="/admissions"
-              className="ml-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5"
+              className="ml-2 shrink-0 whitespace-nowrap rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5"
             >
               Apply Now
             </Link>
@@ -218,7 +218,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-2"
+            className="xl:hidden flex flex-col gap-1.5 p-2"
             aria-label="Toggle menu"
           >
             <span
@@ -242,7 +242,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden transition-all duration-300 overflow-hidden ${
+        className={`xl:hidden transition-all duration-300 overflow-hidden ${
           isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >

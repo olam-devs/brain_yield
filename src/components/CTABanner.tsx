@@ -19,7 +19,7 @@ export default function CTABanner({
 }: CTABannerProps) {
   return (
     <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl px-8 py-16 text-center shadow-2xl md:px-16 md:py-24">
           {/* Background Image */}
           <img

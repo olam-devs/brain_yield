@@ -52,7 +52,7 @@ export default function HeroSlideshow({ slides, tagline }: { slides: HeroSlide[]
 
       {/* Content — left-aligned, constrained width */}
       <div className="relative z-20 flex h-full items-center">
-        <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
+        <div className="mx-auto w-full max-w-[1600px] px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
           <div className="max-w-2xl">
             <p
               key={`eyebrow-${current}`}
