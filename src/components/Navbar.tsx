@@ -3,8 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { Facebook, Instagram, Youtube, Phone, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Youtube, Phone, Mail, MapPin, LogIn } from "lucide-react";
 import type { SiteSettings } from "@/lib/content";
+
+const PARENT_PORTAL_URL = "https://brainyieldschools.ac.tz/check-results";
 
 const programLinks = [
   { href: "/academics#nursery", label: "Nursery" },
@@ -196,9 +198,18 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
                 )}
               </div>
             ))}
+            <a
+              href={PARENT_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-4 flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-primary px-5 py-2 text-sm font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
+            >
+              <LogIn className="h-4 w-4" />
+              Parent Portal
+            </a>
             <Link
               href="/admissions"
-              className="ml-4 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5"
+              className="ml-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5"
             >
               Apply Now
             </Link>
@@ -288,10 +299,20 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
               )}
             </div>
           ))}
+          <a
+            href={PARENT_PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="mx-4 mt-3 flex items-center justify-center gap-1.5 rounded-full border-2 border-primary px-6 py-3 text-sm font-semibold text-primary"
+          >
+            <LogIn className="h-4 w-4" />
+            Parent Portal
+          </a>
           <Link
             href="/admissions"
             onClick={() => setIsOpen(false)}
-            className="block mx-4 mt-3 text-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md"
+            className="block mx-4 mt-2 text-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md"
           >
             Apply Now
           </Link>
