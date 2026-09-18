@@ -55,7 +55,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
 
   return (
     <footer className="bg-primary text-white">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1920px] px-4 sm:px-6 lg:px-8">
         {/* Main Footer */}
         <div className="grid grid-cols-1 gap-12 py-20 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

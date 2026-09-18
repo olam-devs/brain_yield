@@ -93,7 +93,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
           scrolled ? "max-h-0" : "max-h-12"
         }`}
       >
-        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-between text-xs">
+        <div className="mx-auto max-w-[1920px] px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-between text-xs">
           <div className="flex items-center gap-5 text-white/90">
             {settings?.address && (
               <span className="flex items-center gap-1.5">
@@ -137,7 +137,7 @@ export default function Navbar({ settings }: { settings?: SiteSettings }) {
       </div>
 
       <nav className={`bg-white transition-all duration-300 ${scrolled ? "shadow-lg" : "shadow-sm"}`}>
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1920px] px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
