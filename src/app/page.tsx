@@ -39,11 +39,12 @@ async function getHomeTestimonials() {
 async function getHomeNews() {
   try {
     const results = await client.fetch(
-      `*[_type == "news"] | order(publishedAt desc)[0...3] { title, excerpt, category, image, publishedAt }`
+      `*[_type == "news"] | order(publishedAt desc)[0...3] { title, "slug": slug.current, excerpt, category, image, publishedAt }`
     );
     if (results?.length) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return results.map((item: any) => ({
+        href: item.slug ? `/news/${item.slug}` : undefined,
         title: item.title,
         excerpt: item.excerpt || "",
         date: item.publishedAt
@@ -202,7 +203,7 @@ export default async function Home() {
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {events.map((event) => (
-            <NewsCard key={event.title} title={event.title} excerpt={event.excerpt} date={event.date} category="Event" image={event.imageUrl} />
+            <NewsCard key={event.title} title={event.title} excerpt={event.excerpt} date={event.date} category="Event" image={event.imageUrl} href={event.href} />
           ))}
         </div>
       </SectionWrapper>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import NewsCard from "@/components/NewsCard";
@@ -57,6 +58,7 @@ async function getNews() {
       category: item.category || "News",
       image: item.image ? urlFor(item.image).width(800).url() : "/school%20pics/IMG_5977.webp",
       featured: item.featured || false,
+      href: item.slug ? `/news/${item.slug}` : undefined,
     }));
 
     const featured = formatted.find((p: { featured: boolean }) => p.featured) || formatted[0];
@@ -82,7 +84,7 @@ export default async function NewsPage() {
 
       {/* Featured Post */}
       <SectionWrapper>
-        <div className="group overflow-hidden rounded-3xl bg-white shadow-xl border border-border/50">
+        <Link href={featured.href ?? "/news"} className="group block overflow-hidden rounded-3xl bg-white shadow-xl border border-border/50">
           <div className="grid lg:grid-cols-2">
             <div className="relative h-72 lg:h-auto overflow-hidden">
               <img src={featured.image} alt={featured.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -94,16 +96,16 @@ export default async function NewsPage() {
               <p className="mb-6 text-text-light leading-relaxed">{featured.excerpt}</p>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-text-light">{featured.date}</span>
-                <span className="inline-flex items-center text-sm font-semibold text-primary">
+                <span className="inline-flex items-center text-sm font-semibold text-primary transition-colors group-hover:text-secondary">
                   Read Full Story
-                  <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       </SectionWrapper>
 
       {/* Category Filter + Posts */}

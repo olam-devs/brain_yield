@@ -54,6 +54,20 @@ const newsSchema = defineType({
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title", maxLength: 96 } }),
     defineField({ name: "excerpt", title: "Short Excerpt (max 200 chars)", type: "text", validation: (Rule) => Rule.max(200) }),
     defineField({
+      name: "body",
+      title: "Full Story",
+      description: "Shown when a visitor clicks “Read Full Story”. If left empty, the short excerpt is shown instead.",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [defineField({ name: "caption", title: "Caption", type: "string" })],
+        },
+      ],
+    }),
+    defineField({
       name: "category", title: "Category", type: "string",
       options: { list: ["Admissions", "News", "Achievements", "Events", "Sports", "Milestone"] },
     }),

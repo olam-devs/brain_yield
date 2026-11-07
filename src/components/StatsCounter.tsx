@@ -44,9 +44,12 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export default function StatsCounter({ stats }: { stats: StatItem[] }) {
+  // More than 4 numbers: use rows of 3 on larger screens so the rows stay even.
+  const desktopCols = stats.length > 4 ? "md:grid-cols-3" : "md:grid-cols-4";
+
   return (
     <section className="relative -mt-16 z-10 mx-auto max-w-6xl px-4">
-      <div className="grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-2xl md:grid-cols-4 md:p-12">
+      <div className={`grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-2xl ${desktopCols} md:p-12`}>
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
             <div className="text-primary">

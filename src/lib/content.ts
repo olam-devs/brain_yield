@@ -577,6 +577,7 @@ export interface EventItem {
   excerpt: string;
   imageUrl: string;
   date: string;
+  href?: string;
 }
 
 const defaultEvents: EventItem[] = [
@@ -588,11 +589,12 @@ const defaultEvents: EventItem[] = [
 export async function getEvents(): Promise<EventItem[]> {
   try {
     const results = await client.fetch(
-      `*[_type == "news" && category == "Events"] | order(publishedAt desc)[0...4] { title, excerpt, image, publishedAt }`
+      `*[_type == "news" && category == "Events"] | order(publishedAt desc)[0...4] { title, "slug": slug.current, excerpt, image, publishedAt }`
     );
     if (!results?.length) return defaultEvents;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return results.map((e: any) => ({
+      href: e.slug ? `/news/${e.slug}` : undefined,
       title: e.title,
       excerpt: e.excerpt || "",
       imageUrl: img(e.image, 800) || defaultEvents[0].imageUrl,

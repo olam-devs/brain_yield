@@ -31,6 +31,8 @@ export async function POST(req: NextRequest) {
       "/testimonials",
     ];
     for (const path of paths) revalidatePath(path);
+    // Every individual story page (/news/<slug>)
+    revalidatePath("/news/[slug]", "page");
 
     return NextResponse.json({ revalidated: true, type: body._type, now: Date.now() });
   } catch (err) {
